@@ -1,0 +1,24 @@
+@header
+
+#inc e
+
+using namespace std;
+
+namespace createtex {
+    static def void frontpage( auto configMap ) {
+        {} // fix the weird syntex 
+        ifstream stream( "templates/frontPage.txt" );
+        string contents;
+        string date = "DATE"; 
+        string replaceWith = configM; 
+        for (char ch; stream.get(ch); contents.push_back(ch)) {}
+        auto pos = contents.find(date);
+        while (pos != string::npos) {
+            contents.replace(pos, date.length(), replaceWith);
+            pos = contents.find(date, pos);
+        }
+        ofstream out("./output/output.tex");
+        out << contents;
+        out.close();
+    }
+}

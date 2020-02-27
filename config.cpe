@@ -1,0 +1,40 @@
+@header
+
+#inc e
+#include <unordered_map>
+
+using namespace std;
+
+#define green "\u001b[32m"
+#define red "\u001b[31m"
+#define normal "\033[0m"
+
+namespace config {
+
+    static unordered_map<string, string> configMap;
+
+    static def void printConfigMap() {
+        for_each(configMap.begin(), configMap.end(), 
+        [](const std::pair< string, string > &p){
+            print(green + "{ " + p.first + ": " + p.second + " }\n" + normal);
+        });
+    }
+
+    // static unordered_map<
+    //                     string, pair< 
+    //                                 string, unordered_map< 
+    //                                                     string, string 
+    //                                                      > 
+    //                                 > 
+    //                     > 
+    // config;
+
+    // static def string getConfig( string configSearch ) {
+    //     var ret = config.find( configSearch );
+    //     if( ret != config.end() ) {
+    //         return config[configSearch];
+    //     } else {
+    //         return "-1";
+    //     }
+    // }
+}

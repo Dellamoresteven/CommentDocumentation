@@ -1,0 +1,28 @@
+\documentclass[12pt]{report}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\newlength{\drop}
+
+\begin{document}
+
+  \begin{titlepage}
+    \centering
+    \drop=0.1\textheight
+    \vspace*{\baselineskip}
+    \rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt}
+    \rule{\textwidth}{0.4pt}\\[\baselineskip]
+    {\LARGE COMPANY}\\[0.2\baselineskip]
+    \rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt}
+    \rule{\textwidth}{1.6pt}\\[\baselineskip]
+    \scshape
+    TITLE \\
+    LOCATION \\
+    NOTDATF\par
+    \vspace*{2\baselineskip}
+    Created by \\[\baselineskip]
+    {\Large NAME\par}
+    {\itshape EMAIL\par}
+    {\itshape COMPANY \\ OFFICE\par}
+  \end{titlepage}
+\end{document}
