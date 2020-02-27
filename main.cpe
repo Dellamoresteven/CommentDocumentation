@@ -1,0 +1,29 @@
+@header
+
+#inc e
+
+#include <functional>
+
+using namespace std;
+
+def string getNextComment( &stream ) {
+    string line;
+    while (getline( stream, line )) {
+        var found = line.find("//");
+        if (found != string::npos) { 
+            return line;
+        }
+    }
+    return "-1";
+}
+
+m {
+    ifstream file( "input/text.cpp" );
+    string found;
+    while( found != "-1" ) {
+        found = getNextComment( file );
+        println(found);
+    }
+    
+    return 0;
+}
