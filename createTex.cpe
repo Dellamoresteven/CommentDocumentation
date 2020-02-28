@@ -1,22 +1,36 @@
 @header
 
 #inc e
+#include <unordered_map>
 
 using namespace std;
 
 namespace createtex {
-    static def void frontpage( auto configMap ) {
-        {} // fix the weird syntex 
+
+    static def void replace( string& contents, string replace, string replaceWith ) {
+        {} // fix the weird syntex highlighting
+        auto pos = contents.find(replace);
+        while (pos != string::npos) {
+            contents.replace(pos, replace.length(), replaceWith);
+            pos = contents.find(replace, pos);
+        }
+    }
+
+    static void frontpage( unordered_map<string, string> map ) {
+        var vecReplace = vector string;
+        var vecFind = vector string;
+        vecReplace.pushv( "DATE", "AUTHORS", "COMPANY", "TITLE", "LOCATION", "NAME", "EMAIL", "COMPANY", "VERSION" );
+        vecFind.pushv( "@date", "@author", "@company", "@title", "@location", "@name", "@email", "@company", "@version" );
+
         ifstream stream( "templates/frontPage.txt" );
         string contents;
-        string date = "DATE"; 
-        string replaceWith = configM; 
+
         for (char ch; stream.get(ch); contents.push_back(ch)) {}
-        auto pos = contents.find(date);
-        while (pos != string::npos) {
-            contents.replace(pos, date.length(), replaceWith);
-            pos = contents.find(date, pos);
+
+        for( int i = 0; i < vecFind.size(); i++ ) {
+            replace( contents, vecReplace.at(i), map[vecFind.at(i)] );
         }
+
         ofstream out("./output/output.tex");
         out << contents;
         out.close();

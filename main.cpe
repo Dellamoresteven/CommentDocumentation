@@ -21,9 +21,11 @@ def getNextComment( &stream ) {
     return pair<string, int>("-1", -1);
 }
 
+static string curr = "";
+
 def parseLineWithComment( line ) {
     if( line.second == -1 ) return;
-    // println( "\n" + line.first.substr( line.second ) );
+
     istringstream lineReaderSS( line.first.substr( line.second ) );
     string word;
 
@@ -34,26 +36,34 @@ def parseLineWithComment( line ) {
             name += word;
             name += " ";
         }
-        return name.substr( 0, name.length() - 1 );
+        return name.substr( 0, name.length() - 3 );
     };
 
     while( lineReaderSS >> word ) {
-        if( word == "@author" )
-            configMap["@author"] = getSubstance( lineReaderSS );
-        if( word == "@date" ) 
-            configMap["@date"] = getSubstance( lineReaderSS );
-        if( word == "@version" ) 
-            configMap["@version"] = getSubstance( lineReaderSS );
-        if( word == "@company" ) 
-            configMap["@company"] = getSubstance( lineReaderSS );
-        if( word == "@title" ) 
-            configMap["@title"] = getSubstance( lineReaderSS );
-        if( word == "@location" ) 
-            configMap["@location"] = getSubstance( lineReaderSS );
-        if( word == "@email" ) 
-            configMap["@email"] = getSubstance( lineReaderSS );
-        if( word == "@frontpage" ) 
-            frontpage();
+        if( word == "#frontpage" )
+            curr = "#frontpage";
+        if( word == "#class" )
+            curr = "#class";
+        if( curr != "" ) {
+            if( word == "@author" ) 
+                configMap[curr]["@author"] = getSubstance( lineReaderSS );
+            if( word == "@date" ) 
+                configMap[curr]["@date"] = getSubstance( lineReaderSS );
+            if( word == "@version" ) 
+                configMap[curr]["@version"] = getSubstance( lineReaderSS );
+            if( word == "@company" ) 
+                configMap[curr]["@company"] = getSubstance( lineReaderSS );
+            if( word == "@title" )
+                configMap[curr]["@title"] = getSubstance( lineReaderSS ); 
+            if( word == "@location" ) 
+                configMap[curr]["@location"] = getSubstance( lineReaderSS );
+            if( word == "@email" ) 
+                configMap[curr]["@email"] = getSubstance( lineReaderSS );
+            if( word == "@name" ) 
+                configMap[curr]["@name"] = getSubstance( lineReaderSS );
+            if( word == "@desc" ) 
+                configMap[curr]["@desc"] = getSubstance( lineReaderSS );
+        }
     }
 }
 
@@ -65,5 +75,6 @@ m {
         parseLineWithComment( found ); 
     }
     printConfigMap();
+    frontpage( configMap.find("#frontpage")->second );
     return 0;
 }

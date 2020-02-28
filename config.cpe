@@ -11,30 +11,19 @@ using namespace std;
 
 namespace config {
 
-    static unordered_map<string, string> configMap;
+    /* #frontscreen, map of all the things */
+    static unordered_map<string, unordered_map<string, string>> configMap;
 
     static def void printConfigMap() {
+        {}
         for_each(configMap.begin(), configMap.end(), 
-        [](const std::pair< string, string > &p){
-            print(green + "{ " + p.first + ": " + p.second + " }\n" + normal);
+        [](const std::pair< string, unordered_map<string, string> > &p){
+            print(red + p.first + "\n");
+            for_each(p.second.begin(), p.second.end(), 
+            [](const std::pair< string, string > &p){
+                print(green + "{ " + p.first + ": " + p.second + " }\n" + normal);
+            });
         });
     }
 
-    // static unordered_map<
-    //                     string, pair< 
-    //                                 string, unordered_map< 
-    //                                                     string, string 
-    //                                                      > 
-    //                                 > 
-    //                     > 
-    // config;
-
-    // static def string getConfig( string configSearch ) {
-    //     var ret = config.find( configSearch );
-    //     if( ret != config.end() ) {
-    //         return config[configSearch];
-    //     } else {
-    //         return "-1";
-    //     }
-    // }
 }
