@@ -16,10 +16,28 @@ namespace createtex {
         }
     }
 
+    static void startDoc() {
+        ifstream stream( "templates/startDoc.txt" );
+        string contents;
+        for (char ch; stream.get(ch); contents.push_back(ch)) {}
+        ofstream out("./output/output.tex", std::ios_base::app);
+        out << contents;
+        out.close();
+    }
+
+    static void endDoc() {
+        ifstream stream( "templates/endDoc.txt" );
+        string contents;
+        for (char ch; stream.get(ch); contents.push_back(ch)) {}
+        ofstream out("./output/output.tex", std::ios_base::app);
+        out << contents;
+        out.close();
+    }
+
     static void frontpage( unordered_map<string, string> map ) {
         var vecReplace = vector string;
         var vecFind = vector string;
-        vecReplace.pushv( "DATE", "AUTHORS", "COMPANY", "TITLE", "LOCATION", "NAME", "EMAIL", "COMPANY", "VERSION" );
+        vecReplace.pushv( "DATE", "AUTHOR", "COMPANY", "TITLE", "LOCATION", "NAME", "EMAIL", "COMPANY", "VERSION" );
         vecFind.pushv( "@date", "@author", "@company", "@title", "@location", "@name", "@email", "@company", "@version" );
 
         ifstream stream( "templates/frontPage.txt" );
@@ -31,7 +49,7 @@ namespace createtex {
             replace( contents, vecReplace.at(i), map[vecFind.at(i)] );
         }
 
-        ofstream out("./output/output.tex");
+        ofstream out("./output/output.tex", std::ios_base::app);
         out << contents;
         out.close();
     }

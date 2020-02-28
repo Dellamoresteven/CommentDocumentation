@@ -2,8 +2,8 @@
 // @author Steven Dellamore \ 
 // @date Feb 28th 2020 \ 
 // @version 1.0.0 \ 
-// @company CS 352 \ 
-// @title ahh \ 
+// @company Garmin \ 
+// @title This shows how to use Doc \ 
 // @location West Lafayette, IN \ 
 // @email dellamoresteven@gmail.com \ 
 
