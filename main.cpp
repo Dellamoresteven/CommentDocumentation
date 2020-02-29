@@ -2,7 +2,7 @@
 URL = https://github.com/Dellamoresteven/C-Sugar */
 
 // author: Steven Dellamore
-// date: 2020-2-28
+// date: 2020-2-29
 // version: 1.0.0
 
 
@@ -22,6 +22,7 @@ URL = https://github.com/Dellamoresteven/C-Sugar */
 #include <iterator>
 #include <string>
 #include <functional>
+#include <iomanip>
 
 #include "config.cpp"
 #include "createTex.cpp"
@@ -29,6 +30,10 @@ URL = https://github.com/Dellamoresteven/C-Sugar */
 using namespace std;
 using namespace config;
 using namespace createtex;
+
+#define green "\u001b[32m"
+#define red "\u001b[31m"
+#define normal "\033[0m"
 
 template <typename T >
 auto getNextComment( T &stream ) {
@@ -43,7 +48,15 @@ auto getNextComment( T &stream ) {
     return pair<string, int>("-1", -1);
 }
 
-static string curr = "";
+static Header * currHeader;
+static vector<string> validTagList = { "#frontpage", "#class" };
+static vector<string> validTagListIsInner = { "#function" };
+static vector<string> validConfigList = { "@author", "@date", 
+                                        "@version", "@company", 
+                                        "@title", "@location",
+                                        "@email", "@name", "@desc",
+                                        "@code" };
+
 
 template <typename T >
 auto parseLineWithComment( T line ) {
@@ -51,10 +64,11 @@ auto parseLineWithComment( T line ) {
 
     istringstream lineReaderSS( line.first.substr( line.second ) );
     string word;
+    
 
     auto getSubstance = [&](auto &stream) {
         string name; 
-        while( word != "\\" && word != "\n" ) {
+        while( word != "|" && word != "\n" ) {
             stream >> word;
             name += word;
             name += " ";
@@ -63,31 +77,52 @@ auto parseLineWithComment( T line ) {
     };
 
     while( lineReaderSS >> word ) {
-        if( word == "#frontpage" )
-            curr = "#frontpage";
-        if( word == "#class" )
-            curr = "#class";
-        if( curr != "" ) {
-            if( word == "@author" ) 
-                configMap[curr]["@author"] = getSubstance( lineReaderSS );
-            if( word == "@date" ) 
-                configMap[curr]["@date"] = getSubstance( lineReaderSS );
-            if( word == "@version" ) 
-                configMap[curr]["@version"] = getSubstance( lineReaderSS );
-            if( word == "@company" ) 
-                configMap[curr]["@company"] = getSubstance( lineReaderSS );
-            if( word == "@title" )
-                configMap[curr]["@title"] = getSubstance( lineReaderSS ); 
-            if( word == "@location" ) 
-                configMap[curr]["@location"] = getSubstance( lineReaderSS );
-            if( word == "@email" ) 
-                configMap[curr]["@email"] = getSubstance( lineReaderSS );
-            if( word == "@name" ) 
-                configMap[curr]["@name"] = getSubstance( lineReaderSS );
-            if( word == "@desc" ) 
-                configMap[curr]["@desc"] = getSubstance( lineReaderSS );
+        if( std::find( validTagListIsInner.begin(), validTagListIsInner.end(), word ) != validTagListIsInner.end() ) {
+            Header * e = new config::Header();
+            // headerMap.push_back( e );
+            e->typ = word;
+            string longerName;
+            lineReaderSS >> longerName;
+            size_t found = longerName.find("::"); 
+            if (found != string::npos) {
+                for( int i = 0; i < headerMap.size(); i++ ) {
+                    if(headerMap[i]->name == longerName.substr(0,found)){
+                        e->depth = headerMap[i]->depth + 1;
+                        e->name = longerName.substr(found + 2);
+                        headerMap[i]->inner.push_back(e);
+                    }
+                }
+                 // objectTest
+                // longerName.substr(found + 2) // functionTest
+            }
+            currHeader = e;
+        } 
+        if( std::find( validTagList.begin(), validTagList.end(), word ) != validTagList.end() ) {
+            Header * e = new config::Header();
+            e->typ = word;
+            lineReaderSS >> e->name;
+            headerMap.push_back( e );
+            currHeader = e;
+        }
+
+        if( currHeader != NULL ) {
+            if( std::find( validConfigList.begin(), validConfigList.end(), word ) != validConfigList.end() ) {
+                string temp = word;
+                currHeader->configMap.insert(std::pair<string,string>(temp, getSubstance( lineReaderSS )));
+            }
         }
     }
+}
+
+ostream& operator<<(ostream& os, const Header* hd) {
+    os << green << std::setw(hd->depth * 8) <<"type: " << hd->typ << std::setw( (50 - hd->typ.length()) ) << " name: " << hd->name << "\n";
+    for_each(hd->configMap.begin(), hd->configMap.end(), [&](const std::pair<string,string> &p){
+        os << red << std::setw(hd->depth * 8) << "{" << p.first << ": " << std::setw( (56 - p.first.length()) ) << p.second << "}\n" << normal;
+    });
+    for( int i = 0; i < hd->inner.size(); i++ ) {
+        cout << hd->inner[i];
+    }
+    return os;
 }
 
 int main(int argc, char* argv[])  {
@@ -97,9 +132,18 @@ int main(int argc, char* argv[])  {
         found = getNextComment( file );
         parseLineWithComment( found ); 
     }
-    printConfigMap();
-    startDoc();
-    frontpage( configMap.find("#frontpage")->second );
-    endDoc();
+    std::cout << "HEADER MAP" << std::endl;
+    // Printing out the entire headerMap vector with delim: "\n"
+    for (auto i = headerMap.begin(); i != headerMap.end(); ++i)
+    {
+        std::cout << *i << "\n";
+    }
+
+    
+    // println("");
+    // startDoc();
+    // frontpage( configMap.find("#frontpage")->second );
+    // class( configMap.find("#class")->second );
+    // endDoc();
     return 0;
 }

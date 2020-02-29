@@ -2,7 +2,7 @@
 URL = https://github.com/Dellamoresteven/C-Sugar */
 
 // author: Steven Dellamore
-// date: 2020-2-28
+// date: 2020-2-29
 // version: 1.0.0
 
 
@@ -31,19 +31,15 @@ using namespace std;
 
 namespace config {
 
+    struct Header {
+        string typ; // #header 
+        string name = "NULL"; // name
+        unordered_map<string, string> configMap; // configs
+        int depth = 0;
+        vector<Header*> inner;
+    };
+    
     /* #frontscreen, map of all the things */
     static unordered_map<string, unordered_map<string, string>> configMap;
-
-    static void printConfigMap(  ) {
-        {}
-        for_each(configMap.begin(), configMap.end(), 
-        [](const std::pair< string, unordered_map<string, string> > &p){
-            std::cout << red << p.first << "\n";
-            for_each(p.second.begin(), p.second.end(), 
-            [](const std::pair< string, string > &p){
-                std::cout << green << "{ " << p.first << ": " << p.second << " }\n" << normal;
-            });
-        });
-    }
-
+    static vector<Header*> headerMap;
 }
