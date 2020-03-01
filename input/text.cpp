@@ -16,7 +16,9 @@ class StartScreen {
 
     // #function StartScreen::constructor |
     // @author Steven Dellamore |
-    // @desc This function gets called when making a startscreen object. It will init all the values and set up the socket listener for the server to send things too |
+    // @desc This function gets called when making a 
+	// startscreen object. It will init all the values 
+	// and set up the socket listener for the server to send things too |
     // @header constructor() | 
     // @param int x : This is the xcord of the params |
     // @param int y : This is the ycord of the params | 
@@ -48,7 +50,9 @@ class StartScreen {
 
     // #function StartScreen::draw |
     // @author Steven Dellamore |
-    // @desc This funcion will be ran at 60 frames a second and will call all the functions needed to draw the launch screen. |
+    // @desc This funcion will be ran at 60 
+	// frames a second and will call all the 
+	// functions needed to draw the launch screen. |
     // @header draw() |
     // @param void : Takes no params |
 	draw() {
@@ -75,7 +79,10 @@ class StartScreen {
 
     // #function StartScreen::animateTitle |
     // @author Steven Dellamore |
-    // @desc Will check and add/subtract the locations of the T's falling when you go to the launch screen. Once the animation is done, this function will return instantly. |
+    // @desc Will check and add/subtract the 
+	// locations of the T's falling when you 
+	// go to the launch screen. Once the 
+	// animation is done, this function will return instantly. |
 	// @header animateTitle() |
     animateTitle() {
 		for (let i = 0; i < this.titleAnimation.length; i++) {
@@ -87,7 +94,7 @@ class StartScreen {
  
     // #function StartScreen::drawUsernameBox |
     // @author Steven Dellamore |
-    // @desc This function will draw the username bot onto the screen |
+    // @desc This function will draw the username box onto the screen |
     // @header drawUsernameBox() |
 	drawUsernameBox() {
 		push(); // Push my settings
@@ -108,3 +115,4 @@ class StartScreen {
 		text(this.usernameText, 0, windowHeight / 15); // draw username into text box. 
 		pop(); // restore my settings
 	}
+	

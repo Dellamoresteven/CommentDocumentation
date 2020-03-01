@@ -36,16 +36,31 @@ using namespace createtex;
 #define normal "\033[0m"
 
 template <typename T >
-auto getNextComment( T &stream ) {
+string getNextComment( T &stream ) {
+    string fullLine = "";
     string line;
     while (getline( stream, line )) {
         // found @TODO
         auto found = line.find("//");
-        if (found != string::npos) { 
-            return pair<string, int>(line, found);
+        if (found != string::npos) {
+
+            const std::string& chars = "\t\v\f\r ";
+            line.erase(0, line.find_first_not_of(chars));
+
+            if(line.at(0) == '/' && line.at(1) == '/'){
+                fullLine += line.substr(2);
+            } else {
+                fullLine += line;
+            }
+
+            if(line.at(line.length() - 1) == '|' || line.at(line.length() - 2) == '|'){
+                fullLine = "//" + fullLine;
+                // cout << "fullLine: " << fullLine << endl << endl;
+                return fullLine;
+            }
         }
     }
-    return pair<string, int>("-1", -1);
+    return "-1";
 }
 
 static Header * currHeader;
@@ -58,22 +73,26 @@ static vector<string> validConfigList = { "@author", "@date",
                                         "@code", "@param", "@return", "@header" };
 
 
-template <typename T >
-auto parseLineWithComment( T line ) {
-    if( line.second == -1 ) return;
+template <typename T, typename U >
+auto parseLineWithComment( T line, U &file ) {
+    cout << line << endl;
+    if( line == "-1" ) return;
 
-    istringstream lineReaderSS( line.first.substr( line.second ) );
+    stringstream lineReaderSS( line );
     string word;
     
 
-    auto getSubstance = [&](auto &stream) {
+    auto getSubstance = [&](auto &stream) mutable {
         string name; 
-        while( word != "|" && word != "\n" ) {
-            stream >> word;
+        while( stream >> word  ) {
+            if(word == "|") {
+                return name.substr( 0, name.length() - 1 );
+            }
             name += word;
             name += " ";
         }
-        return name.substr( 0, name.length() - 3 );
+        cout << "UH OHOHH" << endl;
+        return name.substr( 0, name.length() - 1 ); 
     };
 
     while( lineReaderSS >> word ) {
@@ -127,10 +146,10 @@ ostream& operator<<(ostream& os, const Header* hd) {
 
 int main(int argc, char* argv[])  {
     ifstream file( "input/text.cpp" );
-    pair<string,int> found;
-    while( found.second != -1 ) {
+    string found;
+    while( found != "-1" ) {
         found = getNextComment( file );
-        parseLineWithComment( found ); 
+        parseLineWithComment( found, file ); 
     }
     std::cout << "HEADER MAP" << std::endl;
     // Printing out the entire headerMap vector with delim: "\n"
