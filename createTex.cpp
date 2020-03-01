@@ -5,7 +5,7 @@ URL = https://github.com/Dellamoresteven/C-Sugar */
 #define MY_CREATETEX
 
 // author: Steven Dellamore
-// date: 2020-2-29
+// date: 2020-3-1
 // version: 1.0.0
 
 
@@ -112,15 +112,22 @@ namespace createtex {
         auto vecFind = std::vector< string >();
         vecReplace.push_back( "AUTHOR"); // pushing  "AUTHOR" onto vecReplace
         vecReplace.push_back("DESC"); // pushing "DESC" onto vecReplace
+        vecReplace.push_back("HEADER"); // pushing "HEADER" onto vecReplace
         vecFind.push_back( "@author"); // pushing  "@author" onto vecFind
         vecFind.push_back("@desc"); // pushing "@desc" onto vecFind
+        vecFind.push_back("@header"); // pushing "@header" onto vecFind
 
         ifstream stream( "templates/functionPage.txt" );
+        ifstream paramStream( "templates/paramPage.txt" );
         string contents;
+        string contentsParam;
+
 
         for (char ch; stream.get(ch); contents.push_back(ch)) {}
+        for (char ch; paramStream.get(ch); contentsParam.push_back(ch)) {}
 
         replace( contents, "FUNC", header->name );
+        
         for( int i = 0; i < vecFind.size(); i++ ) {
             for( int j = 0; j < header->configMap.size(); j++ ) {
                 if(header->configMap.at(j).first == vecFind.at(i)) {
@@ -135,6 +142,28 @@ namespace createtex {
         ofstream out("./output/output.tex", std::ios_base::app);
         out << contents;
         out.close();
+
+        ofstream out2("./output/output.tex", std::ios_base::app);
+        // copyContentsParam @TODO
+        auto copyContentsParam = contentsParam;
+        bool firstParam = true;
+        for( auto const& [key, val] : header->configMap ) {
+            if( key == "@param" ) {
+                if( firstParam ){
+                    // out2 << "\n\\newline\n";
+                    out2 << "\\textbf{\\large{\\\\Parameters}}:\\\\";
+                    firstParam = false;
+                }
+                int index = val.find(":");
+                replace( contentsParam, "PARAMDEF", val.substr(0,index) );
+                replace( contentsParam, "DESC", val.substr(index+2) );
+                out2 << contentsParam;
+                contentsParam = copyContentsParam;
+            }
+        }
+        
+        
+        out2.close();
     }
 
     static void classpage( config::Header* header ) {

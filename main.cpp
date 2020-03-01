@@ -2,7 +2,7 @@
 URL = https://github.com/Dellamoresteven/C-Sugar */
 
 // author: Steven Dellamore
-// date: 2020-2-29
+// date: 2020-3-1
 // version: 1.0.0
 
 
@@ -55,7 +55,7 @@ static vector<string> validConfigList = { "@author", "@date",
                                         "@version", "@company", 
                                         "@title", "@location",
                                         "@email", "@name", "@desc",
-                                        "@code", "@param", "@return" };
+                                        "@code", "@param", "@return", "@header" };
 
 
 template <typename T >

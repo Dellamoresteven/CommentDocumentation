@@ -72,15 +72,20 @@ namespace createtex {
     static void functionpage( config::Header* header ) {
         var vecReplace = vector string;
         var vecFind = vector string;
-        vecReplace.pushv( "AUTHOR", "DESC" );
-        vecFind.pushv( "@author", "@desc" );
+        vecReplace.pushv( "AUTHOR", "DESC", "HEADER" );
+        vecFind.pushv( "@author", "@desc", "@header" );
 
         ifstream stream( "templates/functionPage.txt" );
+        ifstream paramStream( "templates/paramPage.txt" );
         string contents;
+        string contentsParam;
+
 
         for (char ch; stream.get(ch); contents.push_back(ch)) {}
+        for (char ch; paramStream.get(ch); contentsParam.push_back(ch)) {}
 
         replace( contents, "FUNC", header->name );
+        
         for( int i = 0; i < vecFind.size(); i++ ) {
             for( int j = 0; j < header->configMap.size(); j++ ) {
                 if(header->configMap.at(j).first == vecFind.at(i)) {
@@ -95,6 +100,27 @@ namespace createtex {
         ofstream out("./output/output.tex", std::ios_base::app);
         out << contents;
         out.close();
+
+        ofstream out2("./output/output.tex", std::ios_base::app);
+        var copyContentsParam = contentsParam;
+        bool firstParam = true;
+        for( auto const& [key, val] : header->configMap ) {
+            if( key == "@param" ) {
+                if( firstParam ){
+                    // out2 << "\n\\newline\n";
+                    out2 << "\\textbf{\\large{\\\\Parameters}}:\\\\";
+                    firstParam = false;
+                }
+                int index = val.find(":");
+                replace( contentsParam, "PARAMDEF", val.substr(0,index) );
+                replace( contentsParam, "DESC", val.substr(index+2) );
+                out2 << contentsParam;
+                contentsParam = copyContentsParam;
+            }
+        }
+        
+        
+        out2.close();
     }
 
     static void classpage( config::Header* header ) {

@@ -29,50 +29,44 @@
 \newpage
 
 
-\section{objectTest}
-Author: Steven Dellamore \\
-Description: This is my desc \\
+\section{StartScreen}
+\textbf{Author}: Steven Dellamore \\
+\textbf{Description}: StartScreen will render the first screen that people go to when joining the game. It will contain all the buttons to create, join, and view the highscore screen. \\
 
 
 
-\subsection{functionTest1}
-Author: Steven Dellamore \\
-Description: My functionTest Does this really cool thing \\
+\subsection{constructor}
+\textbf{Author}: Steven Dellamore \\
+\textbf{Description}: This function gets called when making a startscreen object. It will init all the values and set up the socket listener for the server to send things too 
 
+\begin{lstlisting}
+constructor()
+\end{lstlisting}\textbf{\large{\\Parameters}}:\\
+\textbf{int x }: This is the xcord of the params\\
+\textbf{int y }: This is the ycord of the params\\
+\textbf{int z }: This is the zcord of the params\\
 
+\subsection{draw}
+\textbf{Author}: Steven Dellamore \\
+\textbf{Description}: This funcion will be ran at 60 frames a second and will call all the functions needed to draw the launch screen. 
 
-\subsection{functionTest2}
-Author: Steven Dellamore \\
-Description: My functionTest Does this really cool thing \\
+\begin{lstlisting}
+draw()
+\end{lstlisting}\textbf{\large{\\Parameters}}:\\
+\textbf{void }: Takes no params\\
 
+\subsection{animateTitle}
+\textbf{Author}: Steven Dellamore \\
+\textbf{Description}: Will check and add/subtract the locations of the T's falling when you go to the launch screen. Once the animation is done, this function will return instantly. 
 
+\begin{lstlisting}
+animateTitle()
+\end{lstlisting}
 
-\subsection{functionTest3}
-Author: Steven Dellamore \\
-Description: My functionTest Does this really cool thing \\
+\subsection{drawUsernameBox}
+\textbf{Author}: Steven Dellamore \\
+\textbf{Description}: This function will draw the username bot onto the screen 
 
-
-
-\section{objectTest2}
-Author: Steven Dellamore \\
-Description: This is my desc \\
-
-
-
-\subsection{functionTest1}
-Author: Steven Dellamore \\
-Description: My functionTest Does this really cool thing \\
-
-
-
-\subsection{functionTest2}
-Author: Steven Dellamore \\
-Description: My functionTest Does this really cool thing \\
-
-
-
-\subsection{functionTest3}
-Author: Steven Dellamore \\
-Description: My functionTest Does this reall cool thing \\
-
-\end{document}
+\begin{lstlisting}
+drawUsernameBox()
+\end{lstlisting}\end{document}

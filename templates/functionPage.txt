@@ -1,6 +1,9 @@
 
 
 \subsection{FUNC}
-Author: AUTHOR \\
-Description: DESC \\
+\textbf{Author}: AUTHOR \\
+\textbf{Description}: DESC 
 
+\begin{lstlisting}
+HEADER
+\end{lstlisting}

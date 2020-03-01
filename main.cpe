@@ -33,7 +33,7 @@ static vector<string> validConfigList = { "@author", "@date",
                                         "@version", "@company", 
                                         "@title", "@location",
                                         "@email", "@name", "@desc",
-                                        "@code", "@param", "@return" };
+                                        "@code", "@param", "@return", "@header" };
 
 
 def parseLineWithComment( line ) {
