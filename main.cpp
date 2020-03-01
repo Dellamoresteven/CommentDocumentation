@@ -55,7 +55,7 @@ static vector<string> validConfigList = { "@author", "@date",
                                         "@version", "@company", 
                                         "@title", "@location",
                                         "@email", "@name", "@desc",
-                                        "@code" };
+                                        "@code", "@param", "@return" };
 
 
 template <typename T >
@@ -108,7 +108,7 @@ auto parseLineWithComment( T line ) {
         if( currHeader != NULL ) {
             if( std::find( validConfigList.begin(), validConfigList.end(), word ) != validConfigList.end() ) {
                 string temp = word;
-                currHeader->configMap.insert(std::pair<string,string>(temp, getSubstance( lineReaderSS )));
+                currHeader->configMap.push_back(std::pair<string,string>(temp, getSubstance( lineReaderSS )));
             }
         }
     }
@@ -139,11 +139,7 @@ int main(int argc, char* argv[])  {
         std::cout << *i << "\n";
     }
 
-    
-    // println("");
-    // startDoc();
-    // frontpage( configMap.find("#frontpage")->second );
-    // class( configMap.find("#class")->second );
-    // endDoc();
+    startDoc();
+
     return 0;
 }

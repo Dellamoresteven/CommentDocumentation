@@ -15,10 +15,14 @@
 class objectTest {
 
     // #function objectTest::functionTest1 |
-    // @version 1.1.1 |
     // @desc My functionTest Does this really cool thing |
     // @author Steven Dellamore |
+    // @param x: Does nothing |
+    // @param y: Does something |
+    //
+    // @return void |
     bool functionTest(){ 
+        int x = 5;
         return true;
     }
 
@@ -63,7 +67,7 @@ class objectTest2 {
 
     // #function objectTest2::functionTest3 |
     // @version 1.1.1 |
-    // @desc My functionTest Does this really cool thing |
+    // @desc My functionTest Does this reall cool thing |
     // @author Steven Dellamore |
     bool functionTest(){ 
         return true;

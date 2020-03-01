@@ -1,3 +1,6 @@
+#ifndef MY_CONFIG
+#define MY_CONFIG
+
 @header
 
 #inc e
@@ -14,12 +17,12 @@ namespace config {
     struct Header {
         string typ; // #header 
         string name = "NULL"; // name
-        unordered_map<string, string> configMap; // configs
+        vector< pair<string, string> > configMap;
         int depth = 0;
         vector<Header*> inner;
     };
     
-    /* #frontscreen, map of all the things */
-    static unordered_map<string, unordered_map<string, string>> configMap;
     static vector<Header*> headerMap;
 }
+
+#endif

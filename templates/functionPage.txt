@@ -1,6 +1,6 @@
 
 
-\section{CLASS}
+\subsection{FUNC}
 Author: AUTHOR \\
 Description: DESC \\
 

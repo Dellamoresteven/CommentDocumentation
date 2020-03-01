@@ -17,4 +17,6 @@
     {\itshape EMAIL\par}
     {\itshape COMPANY \\ OFFICE\par}
   \end{titlepage}
-
+  
+\tableofcontents
+\newpage

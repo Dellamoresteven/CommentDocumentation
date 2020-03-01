@@ -1,4 +1,9 @@
+#ifndef MY_CREATETEX
+#define MY_CREATETEX
+
 @header
+
+#define yellow "\033[1;33m"
 
 #inc e
 #include <unordered_map>
@@ -8,61 +13,145 @@ using namespace std;
 
 namespace createtex {
 
-    // static def void replace( string& contents, string replace, string replaceWith ) {
-    //     {} // fix the weird syntex highlighting
-    //     auto pos = contents.find(replace);
-    //     while (pos != string::npos) {
-    //         contents.replace(pos, replace.length(), replaceWith);
-    //         pos = contents.find(replace, pos);
-    //     }
-    // }
-// 
-    // static void startDoc() {
-    //     ifstream stream( "templates/startDoc.txt" );
-    //     string contents;
-    //     for (char ch; stream.get(ch); contents.push_back(ch)) {}
-    //     ofstream out("./output/output.tex");
-    //     out << contents;
-    //     out.close();
-    // }
+    static void fixHighlighting(){}
 
-    // static void endDoc() {
-    //     ifstream stream( "templates/endDoc.txt" );
-    //     string contents;
-    //     for (char ch; stream.get(ch); contents.push_back(ch)) {}
-    //     ofstream out("./output/output.tex", std::ios_base::app);
-    //     out << contents;
-    //     out.close();
-    // }
+    static def void replace( string& contents, string replace, string replaceWith ) {
+        {} // fix the weird syntex highlighting
+        auto pos = contents.find(replace);
+        while (pos != string::npos) {
+            contents.replace(pos, replace.length(), replaceWith);
+            pos = contents.find(replace, pos);
+        }
+    }
 
-    // static void frontpage( unordered_map<string, string> map ) {
-    //     var vecReplace = vector string;
-    //     var vecFind = vector string;
-    //     vecReplace.pushv( "DATE", "AUTHOR", "COMPANY", "TITLE", "LOCATION", "NAME", "EMAIL", "COMPANY", "VERSION" );
-    //     vecFind.pushv( "@date", "@author", "@company", "@title", "@location", "@name", "@email", "@company", "@version" );
+    static void WriteHeader() {
+        ifstream stream( "templates/startDoc.txt" );
+        string contents;
+        for (char ch; stream.get(ch); contents.push_back(ch)) {}
+        ofstream out("./output/output.tex");
+        out << contents;
+        out.close();
+    }
 
-    //     ifstream stream( "templates/frontPage.txt" );
-    //     string contents;
+    static void endDoc() {
+        ifstream stream( "templates/endDoc.txt" );
+        string contents;
+        for (char ch; stream.get(ch); contents.push_back(ch)) {}
+        ofstream out("./output/output.tex", std::ios_base::app);
+        out << contents;
+        out.close();
+    }
 
-    //     for (char ch; stream.get(ch); contents.push_back(ch)) {}
+    static void frontpage( config::Header* header ) {
+        var vecReplace = vector string;
+        var vecFind = vector string;
+        vecReplace.pushv( "DATE", "AUTHOR", "COMPANY", "TITLE", "LOCATION", "EMAIL", "COMPANY", "VERSION" );
+        vecFind.pushv( "@date", "@author", "@company", "@title", "@location", "@email", "@company", "@version" );
 
-    //     for( int i = 0; i < vecFind.size(); i++ ) {
-    //         replace( contents, vecReplace.at(i), map[vecFind.at(i)] );
-    //     }
-    //     // std::transform(vecReplace.begin(), 
-    //     //                vecReplace.end(), 
-    //     //                vecFind.begin(), 
-    //     //                vecFind.end(), 
-    //     //                boost::bind(
-    //     //                         &replace, 
-    //     //                         contents, 
-    //     //                         std::placeholders::_1, 
-    //     //                         std::placeholders::_2
-    //     //                         )
-    //     //                 );
+        ifstream stream( "templates/frontPage.txt" );
+        string contents;
 
-    //     ofstream out("./output/output.tex", std::ios_base::app);
-    //     out << contents;
-    //     out.close();
-    // }
+        for (char ch; stream.get(ch); contents.push_back(ch)) {}
+
+        for( int i = 0; i < vecFind.size(); i++ ) {
+            for( int j = 0; j < header->configMap.size(); j++ ) {
+                if(header->configMap.at(j).first == vecFind.at(i)) {
+                    replace( contents, vecReplace.at(i), header->configMap.at(j).second );
+                    break;
+                } else if( (j + 1) == header->configMap.size()) {
+                    std::cout << yellow << "Did not Provide " << vecFind.at(i) << std::endl << normal;
+                }
+            }
+        }
+
+        ofstream out("./output/output.tex", std::ios_base::app);
+        out << contents;
+        out.close();
+    }
+
+    static void functionpage( config::Header* header ) {
+        var vecReplace = vector string;
+        var vecFind = vector string;
+        vecReplace.pushv( "AUTHOR", "DESC" );
+        vecFind.pushv( "@author", "@desc" );
+
+        ifstream stream( "templates/functionPage.txt" );
+        string contents;
+
+        for (char ch; stream.get(ch); contents.push_back(ch)) {}
+
+        replace( contents, "FUNC", header->name );
+        for( int i = 0; i < vecFind.size(); i++ ) {
+            for( int j = 0; j < header->configMap.size(); j++ ) {
+                if(header->configMap.at(j).first == vecFind.at(i)) {
+                    replace( contents, vecReplace.at(i), header->configMap.at(j).second );
+                    break;
+                } else if( (j + 1) == header->configMap.size()) {
+                    std::cout << yellow << "Did not Provide " << vecFind.at(i) << std::endl << normal;
+                }
+            }
+        }
+
+        ofstream out("./output/output.tex", std::ios_base::app);
+        out << contents;
+        out.close();
+    }
+
+    static void classpage( config::Header* header ) {
+        var vecReplace = vector string;
+        var vecFind = vector string;
+        vecReplace.pushv( "AUTHOR", "DESC" );
+        vecFind.pushv( "@author", "@desc" );
+
+        ifstream stream( "templates/classPage.txt" );
+        string contents;
+
+        for (char ch; stream.get(ch); contents.push_back(ch)) {}
+
+        replace( contents, "CLASS", header->name );
+        for( int i = 0; i < vecFind.size(); i++ ) {
+            for( int j = 0; j < header->configMap.size(); j++ ) {
+                if(header->configMap.at(j).first == vecFind.at(i)) {
+                    replace( contents, vecReplace.at(i), header->configMap.at(j).second );
+                    break;
+                } else if( (j + 1) == header->configMap.size()) {
+                    std::cout << yellow << "Did not Provide " << vecFind.at(i) << std::endl << normal;
+                }
+            }
+        }
+
+
+
+        ofstream out("./output/output.tex", std::ios_base::app);
+        out << contents;
+        out.close();
+        for( int i = 0; i < header->inner.size(); i++ ) {
+            functionpage( header->inner[i] );
+        }
+    }
+
+    static void loopThroughHeaderMap() {
+        for_each(config::headerMap.begin(), 
+                config::headerMap.end(),
+                [](auto &x){
+                    // cout << x->typ << endl;
+                    if( x->typ == "#frontpage" )
+                        frontpage( x );
+                    if( x->typ == "#class" ){
+                        classpage( x );
+                    }
+                });
+    }
+
+    static void startDoc() {
+        fixHighlighting();
+        // auto x = config::headerMap;
+        WriteHeader();
+
+        loopThroughHeaderMap();
+
+        endDoc();
+    }
 }
+
+#endif
