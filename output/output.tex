@@ -49,7 +49,7 @@ this.TokenBoxText = "";
 this.usernameBoxStroke = false; 
 this.usernameText = "username"; 
 this.usernameTextTouched = false; 
-this.gameStateStartScreen = 0;  
+this.gameStateStartScreen = 0;
 this.titleAnimation = [300, 500, 400, 700];
 \end{minted}
  These varibles will be updated throughout the life of start screen. \mintinline[fontsize=\footnotesize]{javascript}{this.TokenBoxText} will init the token box to nothing, since the user has yet to do anyhting. the \mintinline[fontsize=\footnotesize]{javascript}{this.usernameBoxStroke} will be set to false so the program knows if the user as tried to sumbit. \mintinline[fontsize=\footnotesize]{javascript}{this.titleAnimation = [300, 500, 400, 700];} is the starting position of the title, and will fall every X frames. \\
@@ -187,7 +187,7 @@ constructor(username, id, owner){
     this.playerNum;
 }
 \end{minted}
- We then pass this object into the lobbyscreen and switch the \mintinline[fontsize=\footnotesize]{javascript}{gameState = 1} to move us \\
+ We then pass this object into the lobbyscreen and switch the \mintinline[fontsize=\footnotesize]{javascript}{gameState = 1} to move the user to the next screen. \\
 
 
 \textbf{\large{\\Parameters}}:\\
@@ -200,11 +200,11 @@ constructor(username, id, owner){
 drawHighScoreButtonCheckMouse()
 \end{lstlisting} 
 \vspace*{1\baselineskip}
-\textbf{Description}: This function is being called whenever the user clicks with gamestate of the startscreen == 0. This function checks if the mouse is over the highscore button and returns true if it is, false if its not. \\
+\textbf{Description}: This function is being called whenever the user clicks with gamestate of the \mintinline[fontsize=\footnotesize]{javascript}{this.gameStateStartScreen == 0;}. This function checks if the mouse is over the highscore button and returns \mintinline[fontsize=\footnotesize]{javascript}{true} if it is, \mintinline[fontsize=\footnotesize]{javascript}{false} if its not. \\
 
 
 \textbf{\large{\\Parameters}}:\\
-\textbf{void }: drawHighScoreButtonCheckMouse takes no arugments\\\textbf{\large{\\Returns}}:\\\textbf{bool }: true => If mouse is over score button false => If mouse is not over score button
+\textbf{void }: drawHighScoreButtonCheckMouse takes no arugments\\\textbf{\large{\\Returns}}:\\\textbf{bool }: \\true => If mouse is over score button \\false => If mouse is not over score button
 
 \subsection{drawHighScoreButton}
 \textbf{Author}: Steven Dellamore 
@@ -213,11 +213,20 @@ drawHighScoreButtonCheckMouse()
 drawHighScoreButton()
 \end{lstlisting} 
 \vspace*{1\baselineskip}
-\textbf{Description}: This function will draw the three bars in the bottom left of the screen. It will also check if the mouse is over the button and highlight according. \\
+\textbf{Description}: This function will draw the three bars in the bottom left of the screen. It will first check what \mintinline[fontsize=\footnotesize]{javascript}{this.drawHighScoreButtonCheckMouse()} and set accordingly: 
+\begin{minted}[fontsize=\footnotesize]{javascript}
+let fillHighScore = "white"; // default value is white
+/* Checks if the mouse is over the highscore */
+if (this.drawHighScoreButtonCheckMouse()) { 
+	/* if the mouse is over, it will change the boxes to green */
+	fillHighScore = "rgb(0,255,0)"; 
+}
+\end{minted}
+ If \mintinline[fontsize=\footnotesize]{javascript}{this.drawHighScoreButtonCheckMouse()} returns true, then we set \mintinline[fontsize=\footnotesize]{javascript}{fillHighScore} to \mintinline[fontsize=\footnotesize]{javascript}{"green"}, otherwise keep it \mintinline[fontsize=\footnotesize]{javascript}{"white"}. \\
 
 
 \textbf{\large{\\Parameters}}:\\
-\textbf{void }: drawHighScoreButton takes no arugments\\\textbf{\large{\\Returns}}:\\\textbf{void}
+\textbf{void }: takes no arugments\\\textbf{\large{\\Returns}}:\\\textbf{void }: no return
 
 \subsection{keyPressedStart}
 \textbf{Author}: Steven Dellamore 
@@ -226,7 +235,7 @@ drawHighScoreButton()
 keyPressedStart()
 \end{lstlisting} 
 \vspace*{1\baselineskip}
-\textbf{Description}: This function will be called whenever the user clicked on a button on the start screen. general/keyPressed.js is where this function will be called. \\
+\textbf{Description}: Called whenever the \mintinline[fontsize=\footnotesize]{javascript}{General::function keyPressed()} function routes the signal to this function. a.k.a whenver \mintinline[fontsize=\footnotesize]{javascript}{gameState == 0}. This function first checks the \mintinline[fontsize=\footnotesize]{javascript}{this.gameStateStartScreen} like so: \\\mintinline[fontsize=\footnotesize]{javascript}{switch(this.gameStateStartScreen)} \\\mintinline[fontsize=\footnotesize]{javascript}{case 1:} \\\mintinline[fontsize=\footnotesize]{javascript}{ ...} \\\mintinline[fontsize=\footnotesize]{javascript}{case 2:} \\\mintinline[fontsize=\footnotesize]{javascript}{ ...} \\From here, we can figure out where the user is trying to type and add the types characters accoridngly. \\
 
 
 \textbf{\large{\\Parameters}}:\\

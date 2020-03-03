@@ -53,7 +53,7 @@ class StartScreen {
 		this.usernameBoxStroke = false; 
 		this.usernameText = "username"; 
 		this.usernameTextTouched = false; 
-		this.gameStateStartScreen = 0;  
+		this.gameStateStartScreen = 0;
 		this.titleAnimation = [300, 500, 400, 700];
 		// |
 	}
@@ -264,7 +264,7 @@ class StartScreen {
 	// see its constructor defined here:
 	// @link{PlayerContor}
 	// We then pass this object into the lobbyscreen and switch the @inline{gameState = 1}
-	// to move us |
+	// to move the user to the next screen. |
     // @header mouseClickedStart() | 
 	// @param void : mouseClickedStart takes no arugments |
 	// @returns void | 
@@ -325,11 +325,11 @@ class StartScreen {
 	// #function StartScreen::drawHighScoreButtonCheckMouse |
     // @author Steven Dellamore |
 	// @desc This function is being called whenever the user clicks with 
-	// gamestate of the startscreen == 0. This function checks if the mouse 
-	// is over the highscore button and returns true if it is, false if its not. |
+	// gamestate of the @inline{this.gameStateStartScreen == 0;}. This function checks if the mouse 
+	// is over the highscore button and returns @inline{true} if it is, @inline{false} if its not. |
     // @header drawHighScoreButtonCheckMouse() | 
 	// @param void : drawHighScoreButtonCheckMouse takes no arugments |
-	// @returns bool : true => If mouse is over score button false => If mouse is not over score button | 
+	// @returns bool : \\true => If mouse is over score button \\false => If mouse is not over score button | 
 	drawHighScoreButtonCheckMouse() {
 		this.LeftX = (windowWidth / 1.038) + (windowWidth / 16) / 2; // Left side of the box cords
 		this.RightX = (windowWidth / 1.038) - (windowWidth / 16) / 2; // Right side of the box cords
@@ -346,18 +346,26 @@ class StartScreen {
 	// #function StartScreen::drawHighScoreButton |
     // @author Steven Dellamore |
 	// @desc This function will draw the three bars in the bottom 
-	// left of the screen. It will also check if the mouse is over
-	// the button and highlight according. |
+	// left of the screen. It will first check what @inline{this.drawHighScoreButtonCheckMouse()}
+	// and set accordingly:
+	// @link{drawHighScoreButtonVar1}
+	// If @inline{this.drawHighScoreButtonCheckMouse()} returns
+	// true, then we set @inline{fillHighScore} to @inline{"green"}, otherwise
+	// keep it @inline{"white"}. |
     // @header drawHighScoreButton() | 
-	// @param void : drawHighScoreButton takes no arugments |
-	// @returns void |
+	// @param void : takes no arugments |
+	// @returns void : no return |
 	drawHighScoreButton() {
 		push(); // Push settings
 		translate(0, 0);
+		// #code drawHighScoreButtonVar1 javascript
 		let fillHighScore = "white"; // default value is white
-		if (this.drawHighScoreButtonCheckMouse()) { // Checks if the mouse is over the highscore
-			fillHighScore = "rgb(0,255,0)"; // if the mouse is over, it will change the boxes to green
+		/* Checks if the mouse is over the highscore */
+		if (this.drawHighScoreButtonCheckMouse()) { 
+			/* if the mouse is over, it will change the boxes to green */
+			fillHighScore = "rgb(0,255,0)"; 
 		}
+		// |
 		fill(fillHighScore) // fills with whatever color from above
 		rectMode(CORNER) // sets mode to CORNER, makes it easier to draw boxes
 		rect(windowWidth / 1.065, windowHeight / 1.02, windowWidth / 70, -windowHeight / 35, 4); //left 
@@ -368,9 +376,16 @@ class StartScreen {
 
 	// #function StartScreen::keyPressedStart |
     // @author Steven Dellamore |
-	// @desc This function will be called whenever the user clicked 
-	// on a button on the start screen. general/keyPressed.js
-	// is where this function will be called. |
+	// @desc Called whenever the @inline{General::function keyPressed()} function
+	// routes the signal to this function. a.k.a whenver @inline{gameState == 0}.
+	// This function first checks the @inline{this.gameStateStartScreen} like so:
+	// \\@inline{switch(this.gameStateStartScreen)} 
+	// \\@inline{case 1:} 
+	// \\@inline{	...} 
+	// \\@inline{case 2:} 
+	// \\@inline{	...} 
+	// \\From here, we can figure out where the user is trying to type and 
+	// add the types characters accoridngly. |
     // @header keyPressedStart() | 
 	// @param void : keyPressedStart takes no arugments |
 	// @returns void |
