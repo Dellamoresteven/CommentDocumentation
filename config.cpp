@@ -5,7 +5,7 @@ URL = https://github.com/Dellamoresteven/C-Sugar */
 #define MY_CONFIG
 
 // author: Steven Dellamore
-// date: 2020-3-1
+// date: 2020-3-3
 // version: 1.0.0
 
 
@@ -41,8 +41,16 @@ namespace config {
         int depth = 0;
         vector<Header*> inner;
     };
+
+    struct varsS {
+        string typ; 
+        string name = "NULL";
+        string code;
+    };
     
     static vector<Header*> headerMap;
+
+    static vector<varsS*> vars;
 }
 
 #endif

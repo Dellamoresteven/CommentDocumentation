@@ -1,9 +1,11 @@
 
 
 \subsection{FUNC}
-\textbf{Author}: AUTHOR \\
-\textbf{Description}: DESC 
-
+\textbf{Author}: AUTHOR 
+\vspace*{1\baselineskip}
 \begin{lstlisting}
 HEADER
-\end{lstlisting}
+\end{lstlisting} 
+\vspace*{1\baselineskip}
+\textbf{Description}: DESC \\
+

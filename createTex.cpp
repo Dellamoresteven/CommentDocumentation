@@ -5,7 +5,7 @@ URL = https://github.com/Dellamoresteven/C-Sugar */
 #define MY_CREATETEX
 
 // author: Steven Dellamore
-// date: 2020-3-1
+// date: 2020-3-3
 // version: 1.0.0
 
 
@@ -35,10 +35,30 @@ namespace createtex {
 
     static void fixHighlighting(){}
 
+    static void replaceLinks( string& contents, int pos ) {
+        
+        string AtLink = contents.substr(pos);
+        auto found = AtLink.find_first_of( "{" );
+        auto foundEnd = AtLink.find_first_of( "}" );
+        if( found != string::npos && foundEnd != string::npos ) {
+            string varName = AtLink.substr( found+1, foundEnd-found-1 );
+            for_each(config::vars.begin(), config::vars.end(), [&](auto &elem){
+                if( elem->name == varName ){
+                    cout << "Fiound var\n";
+                }
+            });
+        }
+        
+        
+    }
+
     static void replace( string& contents, string replace, string replaceWith ) {
-        {} // fix the weird syntex highlighting
         auto pos = contents.find(replace);
         while (pos != string::npos) {
+            auto found = contents.find( "@link{" );
+            if( found != string::npos ) {
+                replaceLinks( contents, found );
+            }
             contents.replace(pos, replace.length(), replaceWith);
             pos = contents.find(replace, pos);
         }
@@ -75,6 +95,7 @@ namespace createtex {
         vecReplace.push_back("EMAIL"); // pushing "EMAIL" onto vecReplace
         vecReplace.push_back("COMPANY"); // pushing "COMPANY" onto vecReplace
         vecReplace.push_back("VERSION"); // pushing "VERSION" onto vecReplace
+        vecReplace.push_back("OFFICE"); // pushing "OFFICE" onto vecReplace
         vecFind.push_back( "@date"); // pushing  "@date" onto vecFind
         vecFind.push_back("@author"); // pushing "@author" onto vecFind
         vecFind.push_back("@company"); // pushing "@company" onto vecFind
@@ -83,6 +104,7 @@ namespace createtex {
         vecFind.push_back("@email"); // pushing "@email" onto vecFind
         vecFind.push_back("@company"); // pushing "@company" onto vecFind
         vecFind.push_back("@version"); // pushing "@version" onto vecFind
+        vecFind.push_back("@office"); // pushing "@office" onto vecFind
 
         ifstream stream( "templates/frontPage.txt" );
         string contents;
@@ -143,6 +165,8 @@ namespace createtex {
         out << contents;
         out.close();
 
+
+        /* PARAMS */
         ofstream out2("./output/output.tex", std::ios_base::app);
         // copyContentsParam @TODO
         auto copyContentsParam = contentsParam;
@@ -151,19 +175,42 @@ namespace createtex {
             if( key == "@param" ) {
                 if( firstParam ){
                     // out2 << "\n\\newline\n";
-                    out2 << "\\textbf{\\large{\\\\Parameters}}:\\\\";
+                    out2 << "\n\\textbf{\\large{\\\\Parameters}}:\\\\";
                     firstParam = false;
                 }
                 int index = val.find(":");
                 replace( contentsParam, "PARAMDEF", val.substr(0,index) );
-                replace( contentsParam, "DESC", val.substr(index+2) );
+                replace( contentsParam, "DESC", val.substr(index + 2) );
                 out2 << contentsParam;
                 contentsParam = copyContentsParam;
             }
         }
-        
-        
         out2.close();
+    
+        /* RETURNS */
+        ofstream out3("./output/output.tex", std::ios_base::app);
+        for( auto const& [key, val] : header->configMap ) {
+            if( key == "@returns" ) {
+                out3 << "\\textbf{\\large{\\\\Returns}}:\\\\";
+                int index = val.find(":");
+                if(index != string::npos){
+                    out3 << "\\textbf{";
+                    out3 << val.substr(0, index);
+                    out3 << "}: ";
+                    out3 << val.substr(index + 2);
+                } else {
+                    out3 << "\\textbf{";
+                    out3 << val;
+                    out3 << "}";
+                }
+                // replace( contentsParam, "PARAMDEF", val.substr(0,index) );
+                // replace( contentsParam, "DESC", val.substr(index+2) );
+                // out2 << contentsParam;
+                // contentsParam = copyContentsParam;
+            }
+        }
+        out3.close();
+        
     }
 
     static void classpage( config::Header* header ) {

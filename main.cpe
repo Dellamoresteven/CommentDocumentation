@@ -15,6 +15,36 @@ using namespace createtex;
 #define red "\u001b[31m"
 #define normal "\033[0m"
 
+def string getVar( &stream ) {
+    string fullLine = "";
+    string line;
+    int numTabSpace = 0;
+    const std::string& chars = "\t\v\f\r ";
+    while ( getline( stream, line ) ) {
+        auto found = line.find("|");
+        auto foundComment = line.find("//");
+        if( found != string::npos && foundComment != string::npos ){
+            // cout << "fullLine:\n" << fullLine << endl;
+            return fullLine;
+        } else {
+            if( fullLine == "" ) {
+                numTabSpace = line.find_first_not_of(chars);
+                line.erase(0, numTabSpace);
+                fullLine += line;
+            } else {
+                int checkTabSpace = line.find_first_not_of(chars);
+                if( checkTabSpace >= numTabSpace ) {
+                    line.erase(0, numTabSpace);
+                }
+                fullLine += "\n";
+                fullLine += line;
+            }
+        }
+    }
+    cout << "ERROR getVar\n";
+    return "-1";
+}
+
 def string getNextComment( &stream ) {
     string fullLine = "";
     string line;
@@ -30,6 +60,13 @@ def string getNextComment( &stream ) {
             } else {
                 fullLine += line;
             }
+            var found = line.find("#code");
+            if (found != string::npos) {
+                string temp = getVar( stream );
+                // cout << "temp:\n" << temp << endl;
+                fullLine = "//" + fullLine + "\n" + temp;
+                return fullLine;
+            }
 
             if(line.at(line.length() - 1) == '|' || line.at(line.length() - 2) == '|'){
                 fullLine = "//" + fullLine;
@@ -42,16 +79,18 @@ def string getNextComment( &stream ) {
 }
 
 static Header * currHeader;
-static vector<string> validTagList = { "#frontpage", "#class" };
+static vector<string> validTagList = { "#frontpage", "#class", "#code" };
 static vector<string> validTagListIsInner = { "#function" };
 static vector<string> validConfigList = { "@author", "@date", 
                                         "@version", "@company", 
                                         "@title", "@location",
                                         "@email", "@name", "@desc",
-                                        "@code", "@param", "@return", "@header" };
+                                        "@code", "@param", "@return", "@header", 
+                                        "@office", "@returns" };
 
 
 def parseLineWithComment( line, &file ) {
+    // cout << "line:\n" << line << endl;
     if( line == "-1" ) return;
 
     stringstream lineReaderSS( line );
@@ -93,11 +132,23 @@ def parseLineWithComment( line, &file ) {
             currHeader = e;
         } 
         if( std::find( validTagList.begin(), validTagList.end(), word ) != validTagList.end() ) {
-            Header * e = new config::Header();
-            e->typ = word;
-            lineReaderSS >> e->name;
-            headerMap.push_back( e );
-            currHeader = e;
+            if(word == "#code") {
+                // cout << "line2\n" <<  << endl;
+                varsS * e = new config::varsS();
+                e->typ = "#code";
+                lineReaderSS >> e->name;
+                e->code = line.substr(line.find("\n") + 1);
+                // cout << e->typ << endl;
+                // cout << e->name << endl;
+                // cout << e->code << endl;
+                vars.push_back( e );
+            } else {
+                Header * e = new config::Header();
+                e->typ = word;
+                lineReaderSS >> e->name;
+                headerMap.push_back( e );
+                currHeader = e;
+            }
         }
 
         if( currHeader != NULL ) {
@@ -120,17 +171,28 @@ ostream& operator<<(ostream& os, const Header* hd) {
     return os;
 }
 
+ostream& operator<<(ostream& os, const varsS* hd) {
+    os << green << "name: " << hd->name << "\n";
+    os << red <<"code:\n" << hd->code << "\n" << normal;
+    return os;
+}
+
 m {
-    ifstream file( "input/text.cpp" );
-    string found;
-    while( found != "-1" ) {
-        found = getNextComment( file );
-        parseLineWithComment( found, file ); 
+    ifstream commentMakeFile( "CommentMake.txt" );
+    string fileName;
+    while ( getline( commentMakeFile, fileName ) ) {
+        ifstream file( fileName );
+        string found;
+        while( found != "-1" ) {
+            found = getNextComment( file );
+            parseLineWithComment( found, file ); 
+        }
     }
     println("HEADER MAP");
     printv(headerMap, "\n");
-
+    cout << normal;
+    println("\n\nVARS");
+    printv(vars, "\n");
     startDoc();
-
     return 0;
 }

@@ -21,8 +21,16 @@ namespace config {
         int depth = 0;
         vector<Header*> inner;
     };
+
+    struct varsS {
+        string typ; 
+        string name = "NULL";
+        string code;
+    };
     
     static vector<Header*> headerMap;
+
+    static vector<varsS*> vars;
 }
 
 #endif

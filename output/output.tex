@@ -11,18 +11,18 @@
     \vspace*{7\baselineskip}
     \rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt}
     \rule{\textwidth}{0.4pt}\\[\baselineskip]
-    {\LARGE Garmin}\\[0.2\baselineskip]
+    {\LARGE TeamTris}\\[0.2\baselineskip]
     \rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt}
     \rule{\textwidth}{1.6pt}\\[\baselineskip]
     \scshape
-    This shows how to use Doc \\
+    StartScreen Class Documentation \\
     West Lafayette, IN \\
     Feb 28th 2020\par
     \vspace*{2\baselineskip}
     Created by \\[\baselineskip]
     {\Large Steven Dellamore\par}
     {\itshape dellamoresteven@gmail.com\par}
-    {\itshape Garmin \\ OFFICE\par}
+    {\itshape TeamTris \\ CS407\par}
   \end{titlepage}
   
 \tableofcontents
@@ -31,42 +31,169 @@
 
 \section{StartScreen}
 \textbf{Author}: Steven Dellamore \\
-\textbf{Description}: StartScreen will render the first screen that people go to when joining the game. It will contain all the buttons to create, join, and view the highscore screen. \\
+\textbf{Description}: Startscreen will build the startscreen and create all the buttons needed for the user to get into a game with their friends. The mouseClicks and the keyboard imports all all forwarded to this class when gamestate == 0 \\
 
 
 
 \subsection{constructor}
-\textbf{Author}: Steven Dellamore \\
-\textbf{Description}: This function gets called when making a startscreen object. It will init all the values and set up the socket listener for the server to send things too 
-
+\textbf{Author}: Steven Dellamore 
+\vspace*{1\baselineskip}
 \begin{lstlisting}
 constructor()
-\end{lstlisting}\textbf{\large{\\Parameters}}:\\
-\textbf{int x }: This is the xcord of the params\\
-\textbf{int y }: This is the ycord of the params\\
-\textbf{int z }: This is the zcord of the params\\
+\end{lstlisting} 
+\vspace*{1\baselineskip}
+\textbf{Description}: The constructor gets called when making a startscreen object. It will init all the values and set up the socket listener for the server to send things too. You can use access these public class variables \\ @link{StartScreenContorVars} \\
+
+
+\textbf{\large{\\Parameters}}:\\
+\textbf{x }: x cord\\
+\textbf{y }: y cord\\\textbf{\large{\\Returns}}:\\\textbf{StartScreen }: An object of said class
 
 \subsection{draw}
-\textbf{Author}: Steven Dellamore \\
-\textbf{Description}: This funcion will be ran at 60 frames a second and will call all the functions needed to draw the launch screen. 
-
+\textbf{Author}: Steven Dellamore 
+\vspace*{1\baselineskip}
 \begin{lstlisting}
 draw()
-\end{lstlisting}\textbf{\large{\\Parameters}}:\\
-\textbf{void }: Takes no params\\
+\end{lstlisting} 
+\vspace*{1\baselineskip}
+\textbf{Description}: This funcion will be ran at 60 frames a second and will call all the functions needed to draw the launch screen. \\
+
+
+\textbf{\large{\\Parameters}}:\\
+\textbf{void }: draw takes no arugments\\\textbf{\large{\\Returns}}:\\\textbf{void }: something should go ehre
 
 \subsection{animateTitle}
-\textbf{Author}: Steven Dellamore \\
-\textbf{Description}: Will check and add/subtract the locations of the T's falling when you go to the launch screen. Once the animation is done, this function will return instantly. 
-
+\textbf{Author}: Steven Dellamore 
+\vspace*{1\baselineskip}
 \begin{lstlisting}
 animateTitle()
-\end{lstlisting}
+\end{lstlisting} 
+\vspace*{1\baselineskip}
+\textbf{Description}: Will check and add/subtract the locations of the T's falling when you go to the launch screen. Once the animation is done, this function will return instantly. \\
+
+
+\textbf{\large{\\Parameters}}:\\
+\textbf{void }: animateTitle takes no arugments\\\textbf{\large{\\Returns}}:\\\textbf{void}
 
 \subsection{drawUsernameBox}
-\textbf{Author}: Steven Dellamore \\
-\textbf{Description}: This function will draw the username box onto the screen 
-
+\textbf{Author}: Steven Dellamore 
+\vspace*{1\baselineskip}
 \begin{lstlisting}
 drawUsernameBox()
-\end{lstlisting}\end{document}
+\end{lstlisting} 
+\vspace*{1\baselineskip}
+\textbf{Description}: This function will draw the username box onto the screen. It also checks to see if the user has already tried to go into a game without a username and will display the usernamebox stroke as red to indicate they need to fill it in. \\
+
+
+\textbf{\large{\\Parameters}}:\\
+\textbf{void }: drawUsernameBox takes no arugments\\\textbf{\large{\\Returns}}:\\\textbf{void}
+
+\subsection{drawTitle}
+\textbf{Author}: Steven Dellamore 
+\vspace*{1\baselineskip}
+\begin{lstlisting}
+drawTitle()
+\end{lstlisting} 
+\vspace*{1\baselineskip}
+\textbf{Description}: This function will draw the title (Teamtris) onto the launch screen. This function will also display the two T's falling in the word TeamTris. \\
+
+
+\textbf{\large{\\Parameters}}:\\
+\textbf{void }: drawTitle takes no arugments\\\textbf{\large{\\Returns}}:\\\textbf{void}
+
+\subsection{drawTokenBox}
+\textbf{Author}: Steven Dellamore 
+\vspace*{1\baselineskip}
+\begin{lstlisting}
+drawTokenBox()
+\end{lstlisting} 
+\vspace*{1\baselineskip}
+\textbf{Description}: This function will draw the token box once the user clicks "join game". It will display the token box and the accept button. Unlike other buttons, all mouse clicks are handled. \\
+
+
+\textbf{\large{\\Parameters}}:\\
+\textbf{void }: drawTokenBox takes no arugments\\\textbf{\large{\\Returns}}:\\\textbf{void}
+
+\subsection{mouseClickedStart}
+\textbf{Author}: Steven Dellamore 
+\vspace*{1\baselineskip}
+\begin{lstlisting}
+mouseClickedStart()
+\end{lstlisting} 
+\vspace*{1\baselineskip}
+\textbf{Description}: This function is being called whenever gamestate = 0 and the user clicks their mouse. It will check the current gamestate of the startScreen and check if they are clicking on different parts of the screen such as the create game or join game buttons. \\
+
+
+\textbf{\large{\\Parameters}}:\\
+\textbf{void }: mouseClickedStart takes no arugments\\\textbf{\large{\\Returns}}:\\\textbf{void}
+
+\subsection{drawHighScoreButtonCheckMouse}
+\textbf{Author}: Steven Dellamore 
+\vspace*{1\baselineskip}
+\begin{lstlisting}
+drawHighScoreButtonCheckMouse()
+\end{lstlisting} 
+\vspace*{1\baselineskip}
+\textbf{Description}: This function is being called whenever the user clicks with gamestate of the startscreen == 0. This function checks if the mouse is over the highscore button and returns true if it is, false if its not. \\
+
+
+\textbf{\large{\\Parameters}}:\\
+\textbf{void }: drawHighScoreButtonCheckMouse takes no arugments\\\textbf{\large{\\Returns}}:\\\textbf{bool }: true => If mouse is over score button false => If mouse is not over score button
+
+\subsection{drawHighScoreButton}
+\textbf{Author}: Steven Dellamore 
+\vspace*{1\baselineskip}
+\begin{lstlisting}
+drawHighScoreButton()
+\end{lstlisting} 
+\vspace*{1\baselineskip}
+\textbf{Description}: This function will draw the three bars in the bottom left of the screen. It will also check if the mouse is over the button and highlight according. \\
+
+
+\textbf{\large{\\Parameters}}:\\
+\textbf{void }: drawHighScoreButton takes no arugments\\\textbf{\large{\\Returns}}:\\\textbf{void}
+
+\subsection{keyPressedStart}
+\textbf{Author}: Steven Dellamore 
+\vspace*{1\baselineskip}
+\begin{lstlisting}
+keyPressedStart()
+\end{lstlisting} 
+\vspace*{1\baselineskip}
+\textbf{Description}: This function will be called whenever the user clicked on a button on the start screen. general/keyPressed.js is where this function will be called. \\
+
+
+\textbf{\large{\\Parameters}}:\\
+\textbf{void }: keyPressedStart takes no arugments\\\textbf{\large{\\Returns}}:\\\textbf{void}
+
+\section{Team}
+\textbf{Author}: Steven Dellamore, Richard Hansen \\
+\textbf{Description}: The team class will contain all the other players that are in your game, the team name and the token for your lobby. Once new players come addPlayer will be called to push a newplayer onto the playersInTeam array. \\
+
+
+
+\subsection{constructor}
+\textbf{Author}: Steven Dellamore 
+\vspace*{1\baselineskip}
+\begin{lstlisting}
+constructor()
+\end{lstlisting} 
+\vspace*{1\baselineskip}
+\textbf{Description}: The constructor gets called anytime someone joins or create a game. \\
+
+
+\textbf{\large{\\Parameters}}:\\
+\textbf{void}: no parameters\\\textbf{\large{\\Returns}}:\\\textbf{Team }: A object of the class
+
+\subsection{addPlayer}
+\textbf{Author}: Steven Dellamore 
+\vspace*{1\baselineskip}
+\begin{lstlisting}
+addPlayer(player)
+\end{lstlisting} 
+\vspace*{1\baselineskip}
+\textbf{Description}: The add player function gets called whenever a bot or a real player joins your lobby. This function will also be called to populate the lobby when you join. \\
+
+
+\textbf{\large{\\Parameters}}:\\
+\textbf{Player player}: This parameter is the new player/bot that is joining your team.\\\textbf{\large{\\Returns}}:\\\textbf{void }: no return\end{document}
