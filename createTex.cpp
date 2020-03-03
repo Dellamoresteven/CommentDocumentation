@@ -35,29 +35,57 @@ namespace createtex {
 
     static void fixHighlighting(){}
 
-    static void replaceLinks( string& contents, int pos ) {
-        
+    static void replaceInlines( string& contents, int pos, string language ) {
         string AtLink = contents.substr(pos);
-        auto found = AtLink.find_first_of( "{" );
+        
         auto foundEnd = AtLink.find_first_of( "}" );
-        if( found != string::npos && foundEnd != string::npos ) {
-            string varName = AtLink.substr( found+1, foundEnd-found-1 );
+        if( foundEnd != string::npos ) {
+            AtLink = AtLink.substr( 0, foundEnd+1 );
+            string inlineCode = AtLink.substr( 0, foundEnd );
+            auto found = inlineCode.find_first_of( "{" );
+            inlineCode = inlineCode.substr( found + 1 );
+            string form = "\\mintinline[fontsize=\\footnotesize]{" + language + "}{" + inlineCode + "}";
+            contents.replace( pos, AtLink.length(), form );
+            return;
+        }
+    }
+
+    static void replaceLinks( string& contents, int pos ) {
+        string AtLink = contents.substr(pos);
+        
+        auto foundEnd = AtLink.find_first_of( "}" );
+        if( foundEnd != string::npos ) {
+            AtLink = AtLink.substr( 0, foundEnd+1 );
+            string varName = AtLink.substr( 0, foundEnd );
+            varName.erase(remove( varName.begin(), varName.end(), ' ' ));
+            auto found = varName.find_first_of( "{" );
+            varName = varName.substr( found + 1 );
+            varName.erase(remove( varName.begin(), varName.end(), ' ' ));
             for_each(config::vars.begin(), config::vars.end(), [&](auto &elem){
                 if( elem->name == varName ){
-                    cout << "Fiound var\n";
+                    contents.replace( pos, AtLink.length(), elem->code );
+                    return;
                 }
             });
         }
-        
-        
     }
 
-    static void replace( string& contents, string replace, string replaceWith ) {
+    static void replace( string& contents, string replace, string replaceWith, string language ) {
         auto pos = contents.find(replace);
         while (pos != string::npos) {
-            auto found = contents.find( "@link{" );
-            if( found != string::npos ) {
-                replaceLinks( contents, found );
+            while(true){
+                auto found = contents.find( "@link{" );
+                if( found != string::npos ) {
+                    replaceLinks( contents, found );
+                } else {
+                    found = contents.find( "@inline{" );
+                    if( found != string::npos ) {
+                        replaceInlines( contents, found, language );
+                    } else {
+                        break;
+                    }
+                }
+
             }
             contents.replace(pos, replace.length(), replaceWith);
             pos = contents.find(replace, pos);
@@ -114,7 +142,7 @@ namespace createtex {
         for( int i = 0; i < vecFind.size(); i++ ) {
             for( int j = 0; j < header->configMap.size(); j++ ) {
                 if(header->configMap.at(j).first == vecFind.at(i)) {
-                    replace( contents, vecReplace.at(i), header->configMap.at(j).second );
+                    replace( contents, vecReplace.at(i), header->configMap.at(j).second, header->language );
                     break;
                 } else if( (j + 1) == header->configMap.size()) {
                     std::cout << yellow << "Did not Provide " << vecFind.at(i) << std::endl << normal;
@@ -148,12 +176,12 @@ namespace createtex {
         for (char ch; stream.get(ch); contents.push_back(ch)) {}
         for (char ch; paramStream.get(ch); contentsParam.push_back(ch)) {}
 
-        replace( contents, "FUNC", header->name );
+        replace( contents, "FUNC", header->name, "none" );
         
         for( int i = 0; i < vecFind.size(); i++ ) {
             for( int j = 0; j < header->configMap.size(); j++ ) {
                 if(header->configMap.at(j).first == vecFind.at(i)) {
-                    replace( contents, vecReplace.at(i), header->configMap.at(j).second );
+                    replace( contents, vecReplace.at(i), header->configMap.at(j).second, header->language );
                     break;
                 } else if( (j + 1) == header->configMap.size()) {
                     std::cout << yellow << "Did not Provide " << vecFind.at(i) << std::endl << normal;
@@ -179,8 +207,8 @@ namespace createtex {
                     firstParam = false;
                 }
                 int index = val.find(":");
-                replace( contentsParam, "PARAMDEF", val.substr(0,index) );
-                replace( contentsParam, "DESC", val.substr(index + 2) );
+                replace( contentsParam, "PARAMDEF", val.substr(0,index), "none" );
+                replace( contentsParam, "DESC", val.substr(index + 2), "none" );
                 out2 << contentsParam;
                 contentsParam = copyContentsParam;
             }
@@ -228,11 +256,11 @@ namespace createtex {
 
         for (char ch; stream.get(ch); contents.push_back(ch)) {}
 
-        replace( contents, "CLASS", header->name );
+        replace( contents, "CLASS", header->name, "none" );
         for( int i = 0; i < vecFind.size(); i++ ) {
             for( int j = 0; j < header->configMap.size(); j++ ) {
                 if(header->configMap.at(j).first == vecFind.at(i)) {
-                    replace( contents, vecReplace.at(i), header->configMap.at(j).second );
+                    replace( contents, vecReplace.at(i), header->configMap.at(j).second, "none" );
                     break;
                 } else if( (j + 1) == header->configMap.size()) {
                     std::cout << yellow << "Did not Provide " << vecFind.at(i) << std::endl << normal;
@@ -265,7 +293,7 @@ namespace createtex {
 
     static void startDoc() {
         fixHighlighting();
-        // auto x = config::headerMap;
+
         WriteHeader();
 
         loopThroughHeaderMap();
@@ -273,5 +301,5 @@ namespace createtex {
         endDoc();
     }
 }
-
+// pdflatex -synctex=1 -interaction=nonstopmode --shell-escape output/output.tex
 #endif

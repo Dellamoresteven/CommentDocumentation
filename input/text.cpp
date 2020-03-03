@@ -16,6 +16,7 @@
 // get into a game with their friends. The mouseClicks
 // and the keyboard imports all all forwarded to this class
 // when gamestate == 0 |
+// @language javascript | 
 class StartScreen {
 
     // #function StartScreen::constructor |
@@ -23,12 +24,18 @@ class StartScreen {
 	// @desc The constructor gets called when making a 
 	// startscreen object. It will init all the values 
 	// and set up the socket listener for the server to 
-	// send things too. You can use access these public class
-	// variables \\ @link{StartScreenContorVars} |
+	// send things too. Here are the init values of the class
+	// variables: 
+	// @link{StartScreenContorVars} 
+	// These varibles will be updated throughout the life of 
+	// start screen. @inline{this.TokenBoxText} will init 
+	// the token box to nothing, since the user has yet to do anyhting. 
+	// the @inline{this.usernameBoxStroke} will be set to false so the program knows if
+	// the user as tried to sumbit. @inline{this.titleAnimation = [300, 500, 400, 700];} 
+	// is the starting position of the title, and will fall every X frames. |
     // @header constructor() | 
-	// @param x : x cord |
-	// @param y : y cord |
-	// @returns StartScreen : An object of said class | 
+	// @param void : constructor takes no params |
+	// @returns StartScreen : An object of start class class | 
 	constructor() {
 		if (startscreen_constructor) console.log("Creating StartScreen Object");
 		/* 							X, Y 				 , W  			  , H 				 , gamestate, default color	*/
@@ -41,13 +48,13 @@ class StartScreen {
 		buttonList[buttonList.length - 1].hoverColor = "yellow"; // What color to make the button on mouse hover
 		buttonList[buttonList.length - 1].id = "joinGame"; // ID of the button
 
-		// #code StartScreenContorVars
-		this.TokenBoxText = ""; // default token
-		this.usernameBoxStroke = false; // true: highlight box red. false: go back to normal
-		this.usernameText = "username"; // default username
-		this.usernameTextTouched = false; // checks to see if the box has been touched by the user yet
-		this.gameStateStartScreen = 0; // where in the start screen you are. @draw has a good comment on this.
-		this.titleAnimation = [300, 500, 400, 700] //drops the peices 
+		// #code StartScreenContorVars javascript
+		this.TokenBoxText = ""; 
+		this.usernameBoxStroke = false; 
+		this.usernameText = "username"; 
+		this.usernameTextTouched = false; 
+		this.gameStateStartScreen = 0;  
+		this.titleAnimation = [300, 500, 400, 700];
 		// |
 	}
 

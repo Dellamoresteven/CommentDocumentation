@@ -1,6 +1,7 @@
 \documentclass[12pt]{article}
 \usepackage{listings}
 \usepackage{graphicx}
+\usepackage{minted}
 \usepackage[T1]{fontenc}
 \newlength{\drop}
 

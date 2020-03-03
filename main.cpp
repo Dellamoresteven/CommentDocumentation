@@ -110,7 +110,7 @@ static vector<string> validConfigList = { "@author", "@date",
                                         "@title", "@location",
                                         "@email", "@name", "@desc",
                                         "@code", "@param", "@return", "@header", 
-                                        "@office", "@returns" };
+                                        "@office", "@returns", "@language" };
 
 
 template <typename T, typename U >
@@ -147,6 +147,7 @@ auto parseLineWithComment( T line, U &file ) {
                 for( int i = 0; i < headerMap.size(); i++ ) {
                     if(headerMap[i]->name == longerName.substr(0,found)){
                         e->depth = headerMap[i]->depth + 1;
+                        e->language = headerMap[i]->language;
                         e->name = longerName.substr(found + 2);
                         headerMap[i]->inner.push_back(e);
                     }
@@ -162,10 +163,10 @@ auto parseLineWithComment( T line, U &file ) {
                 varsS * e = new config::varsS();
                 e->typ = "#code";
                 lineReaderSS >> e->name;
-                e->code = line.substr(line.find("\n") + 1);
-                // cout << e->typ << endl;
-                // cout << e->name << endl;
-                // cout << e->code << endl;
+                // lineReaderSS >> e->language; \mintinline[fontsize=\footnotesize]{C++}{int x = 5}
+                
+                e->code = "\n\\begin{minted}[fontsize=\\footnotesize]{" + e->language + "}\n" + line.substr(line.find("\n") + 1) + "\n\\end{minted}\n";
+                // e->inlinecode = "\n\\mintinline[fontsize=\\footnotesize]{int x = 5}\n" + line.substr(line.find("\n") + 1) + "\n\\end{minted}\n";
                 vars.push_back( e );
             } else {
                 Header * e = new config::Header();
@@ -179,7 +180,12 @@ auto parseLineWithComment( T line, U &file ) {
         if( currHeader != NULL ) {
             if( std::find( validConfigList.begin(), validConfigList.end(), word ) != validConfigList.end() ) {
                 string temp = word;
-                currHeader->configMap.push_back(std::pair<string,string>(temp, getSubstance( lineReaderSS )));
+                string value = getSubstance( lineReaderSS );
+                if( temp == "@language" ) {
+                    currHeader->language = value;
+                }else {
+                    currHeader->configMap.push_back(std::pair<string,string>( temp, value ));
+                }
             }
         }
     }
@@ -197,7 +203,7 @@ ostream& operator<<(ostream& os, const Header* hd) {
 }
 
 ostream& operator<<(ostream& os, const varsS* hd) {
-    os << green << "name: " << hd->name << "\n";
+    os << green << "name: " << hd->name << " language: " << hd->language << "\n";
     os << red <<"code:\n" << hd->code << "\n" << normal;
     return os;
 }

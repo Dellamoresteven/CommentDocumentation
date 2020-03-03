@@ -1,6 +1,7 @@
 \documentclass[12pt]{article}
 \usepackage{listings}
 \usepackage{graphicx}
+\usepackage{minted}
 \usepackage[T1]{fontenc}
 \newlength{\drop}
 
@@ -42,12 +43,20 @@
 constructor()
 \end{lstlisting} 
 \vspace*{1\baselineskip}
-\textbf{Description}: The constructor gets called when making a startscreen object. It will init all the values and set up the socket listener for the server to send things too. You can use access these public class variables \\ @link{StartScreenContorVars} \\
+\textbf{Description}: The constructor gets called when making a startscreen object. It will init all the values and set up the socket listener for the server to send things too. Here are the init values of the class variables: 
+\begin{minted}[fontsize=\footnotesize]{c}
+this.TokenBoxText = ""; 
+this.usernameBoxStroke = false; 
+this.usernameText = "username"; 
+this.usernameTextTouched = false; 
+this.gameStateStartScreen = 0;  
+this.titleAnimation = [300, 500, 400, 700];
+\end{minted}
+ These varibles will be updated throughout the life of start screen. \mintinline[fontsize=\footnotesize]{javascript}{this.TokenBoxText} will init the token box to nothing, since the user has yet to do anyhting. the \mintinline[fontsize=\footnotesize]{javascript}{this.usernameBoxStroke} will be set to false so the program knows if the user as tried to sumbit. \mintinline[fontsize=\footnotesize]{javascript}{this.titleAnimation = [300, 500, 400, 700];} is the starting position of the title, and will fall every X frames. \\
 
 
 \textbf{\large{\\Parameters}}:\\
-\textbf{x }: x cord\\
-\textbf{y }: y cord\\\textbf{\large{\\Returns}}:\\\textbf{StartScreen }: An object of said class
+\textbf{void }: constructor takes no params\\\textbf{\large{\\Returns}}:\\\textbf{StartScreen }: An object of start class class
 
 \subsection{draw}
 \textbf{Author}: Steven Dellamore 
@@ -164,36 +173,4 @@ keyPressedStart()
 
 
 \textbf{\large{\\Parameters}}:\\
-\textbf{void }: keyPressedStart takes no arugments\\\textbf{\large{\\Returns}}:\\\textbf{void}
-
-\section{Team}
-\textbf{Author}: Steven Dellamore, Richard Hansen \\
-\textbf{Description}: The team class will contain all the other players that are in your game, the team name and the token for your lobby. Once new players come addPlayer will be called to push a newplayer onto the playersInTeam array. \\
-
-
-
-\subsection{constructor}
-\textbf{Author}: Steven Dellamore 
-\vspace*{1\baselineskip}
-\begin{lstlisting}
-constructor()
-\end{lstlisting} 
-\vspace*{1\baselineskip}
-\textbf{Description}: The constructor gets called anytime someone joins or create a game. \\
-
-
-\textbf{\large{\\Parameters}}:\\
-\textbf{void}: no parameters\\\textbf{\large{\\Returns}}:\\\textbf{Team }: A object of the class
-
-\subsection{addPlayer}
-\textbf{Author}: Steven Dellamore 
-\vspace*{1\baselineskip}
-\begin{lstlisting}
-addPlayer(player)
-\end{lstlisting} 
-\vspace*{1\baselineskip}
-\textbf{Description}: The add player function gets called whenever a bot or a real player joins your lobby. This function will also be called to populate the lobby when you join. \\
-
-
-\textbf{\large{\\Parameters}}:\\
-\textbf{Player player}: This parameter is the new player/bot that is joining your team.\\\textbf{\large{\\Returns}}:\\\textbf{void }: no return\end{document}
+\textbf{void }: keyPressedStart takes no arugments\\\textbf{\large{\\Returns}}:\\\textbf{void}\end{document}

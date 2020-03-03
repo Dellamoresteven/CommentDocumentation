@@ -16,6 +16,7 @@
 // get into a game with their friends. The mouseClicks
 // and the keyboard imports all all forwarded to this class
 // when gamestate == 0 |
+// @language javascript | 
 class StartScreen {
 
     // #function StartScreen::constructor |
@@ -23,10 +24,15 @@ class StartScreen {
 	// @desc The constructor gets called when making a 
 	// startscreen object. It will init all the values 
 	// and set up the socket listener for the server to 
-	// send things too |
+	// send things too. Here are the init values of the class
+	// variables: 
+	// @link{StartScreenContorVars} 
+	// These varibles will be updated throughout the life of 
+	// start screen. @inline{this.TokenBoxText} will |
     // @header constructor() | 
-	// @param void : no parameters
-	// @returns StartScreen | 
+	// @param x : x cord |
+	// @param y : y cord |
+	// @returns StartScreen : An object of said class | 
 	constructor() {
 		if (startscreen_constructor) console.log("Creating StartScreen Object");
 		/* 							X, Y 				 , W  			  , H 				 , gamestate, default color	*/
@@ -34,22 +40,19 @@ class StartScreen {
 		buttonList[buttonList.length - 1].text = "Create Game"; // Text to put in the button
 		buttonList[buttonList.length - 1].hoverColor = "yellow"; // What color to make the button on mouse hover
 		buttonList[buttonList.length - 1].id = "createGame"; // ID of the button
-
 		buttonList.push(new Buttons(0, windowHeight / 4, windowWidth / 5, windowHeight / 10, 0, "red"));
 		buttonList[buttonList.length - 1].text = "Join game"; // Text to put in the button
 		buttonList[buttonList.length - 1].hoverColor = "yellow"; // What color to make the button on mouse hover
 		buttonList[buttonList.length - 1].id = "joinGame"; // ID of the button
 
-		this.TokenBoxText = ""; // default token
-
-		this.usernameBoxStroke = false; // true: highlight box red. false: go back to normal
-
-		this.usernameText = "username"; // default username
-		this.usernameTextTouched = false; // checks to see if the box has been touched by the user yet
-
-		this.gameStateStartScreen = 0; // where in the start screen you are. @draw has a good comment on this.
-
-		this.titleAnimation = [300, 500, 400, 700] //drops the peices 
+		// #code StartScreenContorVars javascript
+		this.TokenBoxText = ""; 
+		this.usernameBoxStroke = false; 
+		this.usernameText = "username"; 
+		this.usernameTextTouched = false; 
+		this.gameStateStartScreen = 0;  
+		this.titleAnimation = [300, 500, 400, 700];
+		// |
 	}
 
 	// #function StartScreen::draw |
@@ -59,7 +62,7 @@ class StartScreen {
 	// to draw the launch screen. |
     // @header draw() | 
 	// @param void : draw takes no arugments |
-	// @returns void | 
+	// @returns void : something should go ehre | 
 	draw() {
 		this.drawTitle(); // Draws the title
 		this.animateTitle(); // Draws the T's dropping
@@ -318,7 +321,7 @@ class StartScreen {
 	// #function StartScreen::keyPressedStart |
     // @author Steven Dellamore |
 	// @desc This function will be called whenever the user clicked 
-	// on a button on the start screen. @link{general/keyPressed.js} 
+	// on a button on the start screen. general/keyPressed.js
 	// is where this function will be called. |
     // @header keyPressedStart() | 
 	// @param void : keyPressedStart takes no arugments |
