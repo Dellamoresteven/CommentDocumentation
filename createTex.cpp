@@ -72,6 +72,7 @@ namespace createtex {
 
     static void replace( string& contents, string replace, string replaceWith, string language ) {
         auto pos = contents.find(replace);
+        // cout << contents << endl;
         while (pos != string::npos) {
             while(true){
                 auto found = contents.find( "@link{" );
@@ -85,9 +86,9 @@ namespace createtex {
                         break;
                     }
                 }
-
             }
             contents.replace(pos, replace.length(), replaceWith);
+            // cout << contents << endl;
             pos = contents.find(replace, pos);
         }
     }
@@ -202,13 +203,25 @@ namespace createtex {
         for( auto const& [key, val] : header->configMap ) {
             if( key == "@param" ) {
                 if( firstParam ){
-                    // out2 << "\n\\newline\n";
                     out2 << "\n\\textbf{\\large{\\\\Parameters}}:\\\\";
                     firstParam = false;
                 }
                 int index = val.find(":");
-                replace( contentsParam, "PARAMDEF", val.substr(0,index), "none" );
-                replace( contentsParam, "DESC", val.substr(index + 2), "none" );
+                replace( contentsParam, "PARAMDEF", val.substr(0,index), header->language );
+                replace( contentsParam, "DESC", val.substr(index + 2), header->language );
+                while(true){
+                    auto found = contentsParam.find( "@link{" );
+                    if( found != string::npos ) {
+                        replaceLinks( contentsParam, found );
+                    } else {
+                        found = contentsParam.find( "@inline{" );
+                        if( found != string::npos ) {
+                            replaceInlines( contentsParam, found, header->language );
+                        } else {
+                            break;
+                        }
+                    }
+                }
                 out2 << contentsParam;
                 contentsParam = copyContentsParam;
             }
@@ -260,7 +273,7 @@ namespace createtex {
         for( int i = 0; i < vecFind.size(); i++ ) {
             for( int j = 0; j < header->configMap.size(); j++ ) {
                 if(header->configMap.at(j).first == vecFind.at(i)) {
-                    replace( contents, vecReplace.at(i), header->configMap.at(j).second, "none" );
+                    replace( contents, vecReplace.at(i), header->configMap.at(j).second, header->language );
                     break;
                 } else if( (j + 1) == header->configMap.size()) {
                     std::cout << yellow << "Did not Provide " << vecFind.at(i) << std::endl << normal;

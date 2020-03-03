@@ -40,7 +40,7 @@ namespace config {
         vector< pair<string, string> > configMap;
         int depth = 0;
         vector<Header*> inner;
-        string language = "c";
+        string language = "javascript";
     };
 
     struct varsS {
@@ -48,7 +48,7 @@ namespace config {
         string name = "NULL";
         string code;
         string inlinecode;
-        string language = "c";
+        string language = "javascript";
     };
     
     static vector<Header*> headerMap;

@@ -1,8 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{n}{this}\PYG{p}{.}\PYG{n}{TokenBoxText} \PYG{o}{=} \PYG{l+s}{\PYGZdq{}\PYGZdq{}}\PYG{p}{;}
-\PYG{n}{this}\PYG{p}{.}\PYG{n}{usernameBoxStroke} \PYG{o}{=} \PYG{n+nb}{false}\PYG{p}{;}
-\PYG{n}{this}\PYG{p}{.}\PYG{n}{usernameText} \PYG{o}{=} \PYG{l+s}{\PYGZdq{}username\PYGZdq{}}\PYG{p}{;}
-\PYG{n}{this}\PYG{p}{.}\PYG{n}{usernameTextTouched} \PYG{o}{=} \PYG{n+nb}{false}\PYG{p}{;}
-\PYG{n}{this}\PYG{p}{.}\PYG{n}{gameStateStartScreen} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
-\PYG{n}{this}\PYG{p}{.}\PYG{n}{titleAnimation} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{300}\PYG{p}{,} \PYG{l+m+mi}{500}\PYG{p}{,} \PYG{l+m+mi}{400}\PYG{p}{,} \PYG{l+m+mi}{700}\PYG{p}{];}
-\end{Verbatim}

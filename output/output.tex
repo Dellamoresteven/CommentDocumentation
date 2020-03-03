@@ -44,7 +44,7 @@ constructor()
 \end{lstlisting} 
 \vspace*{1\baselineskip}
 \textbf{Description}: The constructor gets called when making a startscreen object. It will init all the values and set up the socket listener for the server to send things too. Here are the init values of the class variables: 
-\begin{minted}[fontsize=\footnotesize]{c}
+\begin{minted}[fontsize=\footnotesize]{javascript}
 this.TokenBoxText = ""; 
 this.usernameBoxStroke = false; 
 this.usernameText = "username"; 
@@ -65,7 +65,18 @@ this.titleAnimation = [300, 500, 400, 700];
 draw()
 \end{lstlisting} 
 \vspace*{1\baselineskip}
-\textbf{Description}: This funcion will be ran at 60 frames a second and will call all the functions needed to draw the launch screen. \\
+\textbf{Description}: This funcion will be ran at 60 frames a second and will call all the functions needed to draw the launch screen. The draw function will call the title functions, the highscore functions, and call the join and create button rendering/hitboxes with \mintinline[fontsize=\footnotesize]{javascript}{Buttonloop()}. Depending on what \mintinline[fontsize=\footnotesize]{javascript}{this.gameStateStartScreen} is evaluated to. 
+\begin{minted}[fontsize=\footnotesize]{javascript}
+switch (this.gameStateStartScreen) {
+	case 0:
+		this.drawUsernameBox(); 
+		break;
+	case 1:
+		this.drawTokenBox();
+		break;
+}
+\end{minted}
+ \mintinline[fontsize=\footnotesize]{javascript}{0 = this.drawUsernameBox}, \mintinline[fontsize=\footnotesize]{javascript}{1 = this.drawTokenBox} \\
 
 
 \textbf{\large{\\Parameters}}:\\
@@ -78,7 +89,13 @@ draw()
 animateTitle()
 \end{lstlisting} 
 \vspace*{1\baselineskip}
-\textbf{Description}: Will check and add/subtract the locations of the T's falling when you go to the launch screen. Once the animation is done, this function will return instantly. \\
+\textbf{Description}: Will check and add/subtract the locations of the T's falling when you go to the launch screen. 
+\begin{minted}[fontsize=\footnotesize]{javascript}
+if (this.titleAnimation[i] > 0) {
+	this.titleAnimation[i] -= 10;
+}
+\end{minted}
+ Once \mintinline[fontsize=\footnotesize]{javascript}{this.titleAnimation[i]}, where \mintinline[fontsize=\footnotesize]{javascript}{i} is between \mintinline[fontsize=\footnotesize]{javascript}{[0,4]}, is negative, the array index will no longer be decremented. \\
 
 
 \textbf{\large{\\Parameters}}:\\
@@ -91,7 +108,7 @@ animateTitle()
 drawUsernameBox()
 \end{lstlisting} 
 \vspace*{1\baselineskip}
-\textbf{Description}: This function will draw the username box onto the screen. It also checks to see if the user has already tried to go into a game without a username and will display the usernamebox stroke as red to indicate they need to fill it in. \\
+\textbf{Description}: This function will draw the white username box onto the screen displaying the \mintinline[fontsize=\footnotesize]{javascript}{this.usernameText} in the center. This function will also use \mintinline[fontsize=\footnotesize]{javascript}{this.usernameBoxStroke} to display the red outline around the username box. \\
 
 
 \textbf{\large{\\Parameters}}:\\
@@ -104,7 +121,29 @@ drawUsernameBox()
 drawTitle()
 \end{lstlisting} 
 \vspace*{1\baselineskip}
-\textbf{Description}: This function will draw the title (Teamtris) onto the launch screen. This function will also display the two T's falling in the word TeamTris. \\
+\textbf{Description}: This function will draw the title (Teamtris) onto the launch screen. Also, the function will be responable for displaying the current falling location of the two T's falling at the start of the screen. We make rects based on the current location of \mintinline[fontsize=\footnotesize]{javascript}{this.titleAnimation}. 
+\begin{minted}[fontsize=\footnotesize]{javascript}
+let yStart;
+rect(-windowWidth / 4.3, (yStart = windowHeight / 2.6) - 
+		this.titleAnimation[0], squareSize, squareSize) 
+
+rect(-windowWidth / 4.3, (yStart - (spaceBetweenSquares)) - 
+		this.titleAnimation[0], squareSize, squareSize) 
+
+fill(255, 0, 0) // fill red
+
+rect(-windowWidth / 4.3, yStart - (2 * spaceBetweenSquares) - 
+		this.titleAnimation[1], squareSize, squareSize)
+
+rect(-windowWidth / 4.3 - spaceBetweenSquares, 
+		yStart - (2 * spaceBetweenSquares) - this.titleAnimation[1], 
+				squareSize, squareSize)
+
+rect(-windowWidth / 4.3 + spaceBetweenSquares, 
+		yStart - (2 * spaceBetweenSquares) - this.titleAnimation[1], 
+				squareSize, squareSize)
+\end{minted}
+ The important thing to note is to see the y val of the rect is being changed by 10 every frame in \mintinline[fontsize=\footnotesize]{javascript}{function animateTitle()}. \\
 
 
 \textbf{\large{\\Parameters}}:\\
@@ -130,7 +169,25 @@ drawTokenBox()
 mouseClickedStart()
 \end{lstlisting} 
 \vspace*{1\baselineskip}
-\textbf{Description}: This function is being called whenever gamestate = 0 and the user clicks their mouse. It will check the current gamestate of the startScreen and check if they are clicking on different parts of the screen such as the create game or join game buttons. \\
+\textbf{Description}: This function is being called whenever \mintinline[fontsize=\footnotesize]{javascript}{gamestate = 0} AND the user clicks their mouse. First, we will check what \mintinline[fontsize=\footnotesize]{javascript}{this.gameStateStartScreen} is. If its \mintinline[fontsize=\footnotesize]{javascript}{0}, we will check the \mintinline[fontsize=\footnotesize]{javascript}{function ClickedLoop()} to see if the user is clicking on the join game, create game, or highscore score buttons. If the user clicks on a the create game button with a valid username we are going to send them into the lobbyscreen. 
+\begin{minted}[fontsize=\footnotesize]{javascript}
+// Creating my lobbyscreen object
+mLobbyScreen = new LobbyScreen(
+	new Player(
+		this.usernameText, Math.floor(Math.random() * 100), true));
+
+gameState = 1; // Switch to lobby screen
+\end{minted}
+ We need to create a new Player, and set their ownership value to 0. We see its constructor defined here: 
+\begin{minted}[fontsize=\footnotesize]{javascript}
+constructor(username, id, owner){
+    this.username = username;
+    this.id = id;
+    this.owner = owner;
+    this.playerNum;
+}
+\end{minted}
+ We then pass this object into the lobbyscreen and switch the \mintinline[fontsize=\footnotesize]{javascript}{gameState = 1} to move us \\
 
 
 \textbf{\large{\\Parameters}}:\\
@@ -173,4 +230,136 @@ keyPressedStart()
 
 
 \textbf{\large{\\Parameters}}:\\
-\textbf{void }: keyPressedStart takes no arugments\\\textbf{\large{\\Returns}}:\\\textbf{void}\end{document}
+\textbf{void }: keyPressedStart takes no arugments\\\textbf{\large{\\Returns}}:\\\textbf{void}
+
+\section{Team}
+\textbf{Author}: Steven Dellamore, Richard Hansen \\
+\textbf{Description}: The team class will contain all the other players that are in your game, the team name and the token for your lobby. Once new players come addPlayer will be called to push a newplayer onto the playersInTeam array. \\
+
+
+
+\subsection{constructor}
+\textbf{Author}: Steven Dellamore 
+\vspace*{1\baselineskip}
+\begin{lstlisting}
+constructor()
+\end{lstlisting} 
+\vspace*{1\baselineskip}
+\textbf{Description}: The constructor gets called anytime someone joins or create a game. \\
+
+
+\textbf{\large{\\Parameters}}:\\
+\textbf{void}: no parameters\\\textbf{\large{\\Returns}}:\\\textbf{Team }: A object of the class
+
+\subsection{addPlayer}
+\textbf{Author}: Steven Dellamore 
+\vspace*{1\baselineskip}
+\begin{lstlisting}
+addPlayer(player)
+\end{lstlisting} 
+\vspace*{1\baselineskip}
+\textbf{Description}: The add player function gets called whenever a bot or a real player joins your lobby. This function will also be called to populate the lobby when you join. \\
+
+
+\textbf{\large{\\Parameters}}:\\
+\textbf{Player player}: This parameter is the new player/bot that is joining your team.\\\textbf{\large{\\Returns}}:\\\textbf{void }: no return
+
+\section{Player}
+\textbf{Author}: Steven Dellamore, Richard Hansen \\
+\textbf{Description}: Every user will have their own object of the Player class. This is going to be passed around to other people in the lobby. This class will tell the game screen who is who and will help identify moves. \\
+
+
+
+\subsection{constructor}
+\textbf{Author}: Steven Dellamore 
+\vspace*{1\baselineskip}
+\begin{lstlisting}
+constructor(username, id, owner)
+\end{lstlisting} 
+\vspace*{1\baselineskip}
+\textbf{Description}: The constructor takes in three things, a name, id and a owner flag. It will then create an object of \mintinline[fontsize=\footnotesize]{javascript}{Player} and init all class varibles. This Class is used throughout all stages of the program. \\
+
+
+\textbf{\large{\\Parameters}}:\\
+\textbf{String username }: username of the new Player\\
+\textbf{int id }: id, \mintinline[fontsize=\footnotesize]{javascript}{[0,4]}, of the new player.\\
+\textbf{boolean owner }: \mintinline[fontsize=\footnotesize]{javascript}{true} or \mintinline[fontsize=\footnotesize]{javascript}{false} if they are owner\\\textbf{\large{\\Returns}}:\\\textbf{Player }: An object of Player class
+
+\subsection{setPlayerNum}
+\textbf{Author}: Steven Dellamore 
+\vspace*{1\baselineskip}
+\begin{lstlisting}
+setPlayerNum(num)
+\end{lstlisting} 
+\vspace*{1\baselineskip}
+\textbf{Description}: Will set \mintinline[fontsize=\footnotesize]{javascript}{this.playerNum} equal to \mintinline[fontsize=\footnotesize]{javascript}{num}. This is just a helper function. \\
+
+
+\textbf{\large{\\Parameters}}:\\
+\textbf{int num }: sets the \mintinline[fontsize=\footnotesize]{javascript}{this.playerNum = num}\\\textbf{\large{\\Returns}}:\\\textbf{void }: returns nothing
+
+\section{General}
+\textbf{Author}: Steven Dellamore, Richard Hansen \\
+\textbf{Description}: This is an abstract class that will hold mouseClicked and keyPressed p5 functions. \\
+
+
+
+\subsection{mouseClicked}
+\textbf{Author}: Steven Dellamore, Richard Hansen 
+\vspace*{1\baselineskip}
+\begin{lstlisting}
+mouseClicked()
+\end{lstlisting} 
+\vspace*{1\baselineskip}
+\textbf{Description}: Will be called whenever the user clicks on anywhere on the screen. Once called, it will go straight into a switch to decide where to route to based on the gameState 
+\begin{minted}[fontsize=\footnotesize]{javascript}
+switch (gameState) {
+    case 0:
+        // start screens mouseClicked
+        mStartScreen.mouseClickedStart(); 
+        break;
+    case 1:
+        // lobby screens mouseClicked
+        mLobbyScreen.mouseClickedLobby();
+        break;
+    case 2:
+        break;
+    case 3:
+        break;
+}
+\end{minted}
+ The varibles \mintinline[fontsize=\footnotesize]{javascript}{gameState}, \mintinline[fontsize=\footnotesize]{javascript}{mStartScreen}, \mintinline[fontsize=\footnotesize]{javascript}{mLobbyScreen} are all defined in sketch.js \\
+
+
+\textbf{\large{\\Parameters}}:\\
+\textbf{void }: takes no parameters\\\textbf{\large{\\Returns}}:\\\textbf{void }: returns nothing
+
+\subsection{keyPressed}
+\textbf{Author}: Steven Dellamore, Richard Hansen 
+\vspace*{1\baselineskip}
+\begin{lstlisting}
+mouseClicked()
+\end{lstlisting} 
+\vspace*{1\baselineskip}
+\textbf{Description}: Will be called whenever the presses a key. Once called, it will go straight into a switch to decide where to route to based on the gameState 
+\begin{minted}[fontsize=\footnotesize]{javascript}
+switch (gameState) {
+  case 0:
+    mStartScreen.keyPressedStart();
+    break;
+  case 1:
+    mLobbyScreen.keyPressedLobby();
+    break;
+  case 2:
+    mGameScreen.keyPressedGame();
+    break;
+  case 3:
+    // mScoreScreen.keyPressedScore();
+    break;
+}
+\end{minted}
+ The varibles \mintinline[fontsize=\footnotesize]{javascript}{gameState}, \mintinline[fontsize=\footnotesize]{javascript}{mStartScreen}, \mintinline[fontsize=\footnotesize]{javascript}{mLobbyScreen} are all defined in sketch.js \\
+
+
+\textbf{\large{\\Parameters}}:\\
+\textbf{void }: takes no parameters\\\textbf{\large{\\Returns}}:\\\textbf{void }: returns nothing\end{document}
