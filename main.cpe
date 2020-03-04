@@ -113,7 +113,6 @@ def parseLineWithComment( line, &file ) {
     while( lineReaderSS >> word ) {
         if( std::find( validTagListIsInner.begin(), validTagListIsInner.end(), word ) != validTagListIsInner.end() ) {
             Header * e = new config::Header();
-            // headerMap.push_back( e );
             e->typ = word;
             string longerName;
             lineReaderSS >> longerName;
@@ -126,9 +125,7 @@ def parseLineWithComment( line, &file ) {
                         e->name = longerName.substr(found + 2);
                         headerMap[i]->inner.push_back(e);
                     }
-                }
-                 // objectTest
-                // longerName.substr(found + 2) // functionTest
+                } 
             }
             currHeader = e;
         } 

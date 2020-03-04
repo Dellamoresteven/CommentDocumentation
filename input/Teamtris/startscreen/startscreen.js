@@ -66,8 +66,7 @@ class StartScreen {
 	// the title functions, the highscore functions, and call
 	// the join and create button rendering/hitboxes with @inline{Buttonloop()}.
 	// Depending on what @inline{this.gameStateStartScreen} is evaluated to. 
-	// @link{drawVar} @inline{0 = this.drawUsernameBox}, 
-	// @inline{1 = this.drawTokenBox} |
+	// @link{drawVar} |
     // @header draw() | 
 	// @param void : draw takes no arugments |
 	// @returns void : something should go ehre | 
@@ -379,12 +378,8 @@ class StartScreen {
 	// @desc Called whenever the @inline{General::function keyPressed()} function
 	// routes the signal to this function. a.k.a whenver @inline{gameState == 0}.
 	// This function first checks the @inline{this.gameStateStartScreen} like so:
-	// \\@inline{switch(this.gameStateStartScreen)} 
-	// \\@inline{case 1:} 
-	// \\@inline{	...} 
-	// \\@inline{case 2:} 
-	// \\@inline{	...} 
-	// \\From here, we can figure out where the user is trying to type and 
+	// @link{keyPressedStartExample}
+	// From here, we can figure out where the user is trying to type and 
 	// add the types characters accoridngly. |
     // @header keyPressedStart() | 
 	// @param void : keyPressedStart takes no arugments |

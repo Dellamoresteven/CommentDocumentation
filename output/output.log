@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  3 MAR 2020 18:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  4 MAR 2020 15:07
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -539,11 +539,6 @@ creen. []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 55--56
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 58--60
 
  []
@@ -564,21 +559,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 58--60
 
 (./_minted-output/6221D1D12AC4C6F3C75D62051D3E9BF075600F18B89BEFFBA23F5C10F0B67
 969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/09E9EFAA076CC0861ECC14A01AC3387D75600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/38B4A8B5CE80C7394109491EE944CE4975600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 1--80
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 82--84
 
  []
@@ -587,7 +567,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 82--84
 
 
 (./_minted-output/E97E4F31913D5A0AF323B794E512A0EA75600F18B89BEFFBA23F5C10F0B67
-969.pygtex [3])
+969.pygtex)
 \openout4 = `output.pyg'.
 
 
@@ -602,12 +582,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 82--84
 
 
 (./_minted-output/3601DFE5E84ACE3EB747AB431AD07F0475600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 98--99
-
- []
-
-
+969.pygtex) [3]
 Underfull \hbox (badness 10000) in paragraph at lines 101--103
 
  []
@@ -622,11 +597,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 101--103
 
 (./_minted-output/9FDFB83CE866EF29893DA15028B7523975600F18B89BEFFBA23F5C10F0B67
 969.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 111--112
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 114--116
 
  []
@@ -646,25 +616,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 114--116
 
 (./_minted-output/4B7AC3B287B28FE1F27F7032533A433F75600F18B89BEFFBA23F5C10F0B67
 969.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 146--147
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 149--151
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 159--160
-
- []
-
-[5]
 Underfull \hbox (badness 10000) in paragraph at lines 162--164
 
  []
 
+[5]
 \openout4 = `output.pyg'.
 
 
@@ -700,15 +661,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 162--164
 
 (./_minted-output/3D5BD20BB5BD0C8A122CEFD519F9615075600F18B89BEFFBA23F5C10F0B67
 969.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 190--191
-
- []
-
-[6]
 Underfull \hbox (badness 10000) in paragraph at lines 193--195
 
  []
 
+[6]
 \openout4 = `output.pyg'.
 
 
@@ -724,11 +681,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 193--195
 
 (./_minted-output/D42F2DA1DF5ECDF29BE4AC27EDDA0C1275600F18B89BEFFBA23F5C10F0B67
 969.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 203--204
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 206--208
 
  []
@@ -742,7 +694,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 206--208
 
 
 (./_minted-output/DF20F64EBB9850B665A4DF75892F7CA075600F18B89BEFFBA23F5C10F0B67
-969.pygtex [7])
+969.pygtex)
 \openout4 = `output.pyg'.
 
 
@@ -768,15 +720,11 @@ Overfull \hbox (4.9509pt too wide) in paragraph at lines 225--226
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 225--226
-
- []
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 228--230
 
  []
 
+[7]
 \openout4 = `output.pyg'.
 
 
@@ -792,79 +740,41 @@ Underfull \hbox (badness 10000) in paragraph at lines 228--230
 
 (./_minted-output/D809F1D3B853108A0B67A02AED3B483575600F18B89BEFFBA23F5C10F0B67
 969.pygtex)
-\openout4 = `output.pyg'.
+\openout3 = `output.pyg'.
 
 
-(./_minted-output/30CF26E1684F95EEAE0708924573461575600F18B89BEFFBA23F5C10F0B67
+(./_minted-output/29AAF2256D61FC84244C3BFAEA20F94275600F18B89BEFFBA23F5C10F0B67
 969.pygtex)
-\openout4 = `output.pyg'.
+Underfull \hbox (badness 10000) in paragraph at lines 252--254
+
+ []
 
 
-(./_minted-output/EC6541079CDF871B6A44556476D944AD75600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/EB2F2EA77369A1B74237D7FC48EC20A475600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/0C1C9A167973C14C0148C87D20A8D0AB75600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/EB2F2EA77369A1B74237D7FC48EC20A475600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 238--239
+Underfull \hbox (badness 10000) in paragraph at lines 256--258
 
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 241--243
+Underfull \hbox (badness 10000) in paragraph at lines 271--273
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 245--247
+Underfull \hbox (badness 10000) in paragraph at lines 284--286
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 257--258
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 260--262
+Underfull \hbox (badness 10000) in paragraph at lines 288--290
 
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 270--271
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 273--275
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 277--279
-
- []
-
 \openout4 = `output.pyg'.
 
 
 (./_minted-output/A591D44360DC82294B644B9B1F1C891275600F18B89BEFFBA23F5C10F0B67
 969.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 289--290
-
- []
-
 \openout4 = `output.pyg'.
 
 
@@ -880,11 +790,10 @@ Underfull \hbox (badness 10000) in paragraph at lines 289--290
 
 (./_minted-output/D42F2DA1DF5ECDF29BE4AC27EDDA0C1275600F18B89BEFFBA23F5C10F0B67
 969.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 292--296
+Underfull \hbox (badness 10000) in paragraph at lines 303--307
 
  []
 
-[10]
 \openout4 = `output.pyg'.
 
 
@@ -895,25 +804,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 292--296
 
 (./_minted-output/CB54072DD80AC9B33187118FAB972C4F75600F18B89BEFFBA23F5C10F0B67
 969.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 304--305
-
- []
-
 \openout4 = `output.pyg'.
 
 
 (./_minted-output/8930FB83E6920709567C940526E7F3A775600F18B89BEFFBA23F5C10F0B67
 969.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 307--309
+Underfull \hbox (badness 10000) in paragraph at lines 318--320
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 311--313
+[10]
+Underfull \hbox (badness 10000) in paragraph at lines 322--324
 
  []
 
-[11]
 \openout3 = `output.pyg'.
 
 
@@ -934,20 +838,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 311--313
 
 (./_minted-output/65A9060BDF09988DCCD5A8BBEC7AF6E975600F18B89BEFFBA23F5C10F0B67
 969.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 340--341
+Underfull \hbox (badness 10000) in paragraph at lines 354--356
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 343--345
-
- []
-
+[11]
 \openout3 = `output.pyg'.
 
 
 (./_minted-output/713FEF980A8FD612D9D769F8463EB6E375600F18B89BEFFBA23F5C10F0B67
-969.pygtex [12])
+969.pygtex)
 \openout4 = `output.pyg'.
 
 
@@ -963,27 +863,29 @@ Underfull \hbox (badness 10000) in paragraph at lines 343--345
 
 (./_minted-output/65A9060BDF09988DCCD5A8BBEC7AF6E975600F18B89BEFFBA23F5C10F0B67
 969.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 370--371
+runsystem(rm _minted-output/09E9EFAA076CC0861ECC14A01AC3387D75600F18B89BEFFBA23
+F5C10F0B67969.pygtex)...executed.
+
+runsystem(rm _minted-output/38B4A8B5CE80C7394109491EE944CE4975600F18B89BEFFBA23
+F5C10F0B67969.pygtex)...executed.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 384--385
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 373--374
-
- []
-
-[13] (./output.aux)
+[12] (./output.aux)
 runsystem(rm output.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 7582 strings out of 492616
- 136683 string characters out of 6129482
- 237481 words of memory out of 5000000
- 11232 multiletter control sequences out of 15000+600000
+ 7562 strings out of 492616
+ 135022 string characters out of 6129482
+ 236158 words of memory out of 5000000
+ 11227 multiletter control sequences out of 15000+600000
  15200 words of font info for 36 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,6n,35p,906b,971s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,6n,35p,845b,971s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></
 usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></us
@@ -995,10 +897,10 @@ texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/te
 xlive/2019/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/local/texl
 ive/2019/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texliv
 e/2019/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on output.pdf (14 pages, 200118 bytes).
+Output written on output.pdf (13 pages, 199775 bytes).
 PDF statistics:
- 91 PDF objects out of 1000 (max. 8388607)
- 64 compressed objects within 1 object stream
+ 88 PDF objects out of 1000 (max. 8388607)
+ 62 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

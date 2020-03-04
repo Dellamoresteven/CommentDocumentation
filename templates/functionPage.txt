@@ -7,5 +7,5 @@
 HEADER
 \end{lstlisting} 
 \vspace*{1\baselineskip}
-\textbf{Description}: DESC \\
+\textbf{Description}: DESC 
 

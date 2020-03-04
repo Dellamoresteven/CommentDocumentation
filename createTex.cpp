@@ -5,7 +5,7 @@ URL = https://github.com/Dellamoresteven/C-Sugar */
 #define MY_CREATETEX
 
 // author: Steven Dellamore
-// date: 2020-3-3
+// date: 2020-3-4
 // version: 1.0.0
 
 
@@ -52,7 +52,6 @@ namespace createtex {
 
     static void replaceLinks( string& contents, int pos ) {
         string AtLink = contents.substr(pos);
-        
         auto foundEnd = AtLink.find_first_of( "}" );
         if( foundEnd != string::npos ) {
             AtLink = AtLink.substr( 0, foundEnd+1 );

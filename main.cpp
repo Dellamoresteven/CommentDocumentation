@@ -2,7 +2,7 @@
 URL = https://github.com/Dellamoresteven/C-Sugar */
 
 // author: Steven Dellamore
-// date: 2020-3-3
+// date: 2020-3-4
 // version: 1.0.0
 
 
@@ -138,7 +138,6 @@ auto parseLineWithComment( T line, U &file ) {
     while( lineReaderSS >> word ) {
         if( std::find( validTagListIsInner.begin(), validTagListIsInner.end(), word ) != validTagListIsInner.end() ) {
             Header * e = new config::Header();
-            // headerMap.push_back( e );
             e->typ = word;
             string longerName;
             lineReaderSS >> longerName;
@@ -151,9 +150,7 @@ auto parseLineWithComment( T line, U &file ) {
                         e->name = longerName.substr(found + 2);
                         headerMap[i]->inner.push_back(e);
                     }
-                }
-                 // objectTest
-                // longerName.substr(found + 2) // functionTest
+                } 
             }
             currHeader = e;
         } 

@@ -32,7 +32,6 @@ namespace createtex {
 
     static def void replaceLinks( string& contents, int pos ) {
         string AtLink = contents.substr(pos);
-        
         auto foundEnd = AtLink.find_first_of( "}" );
         if( foundEnd != string::npos ) {
             AtLink = AtLink.substr( 0, foundEnd+1 );
