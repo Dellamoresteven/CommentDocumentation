@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  4 MAR 2020 15:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  4 MAR 2020 19:36
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -755,21 +755,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 256--258
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 271--273
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 284--286
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 288--290
-
- []
-
-[9]
 \openout4 = `output.pyg'.
 
 
@@ -790,7 +775,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 288--290
 
 (./_minted-output/D42F2DA1DF5ECDF29BE4AC27EDDA0C1275600F18B89BEFFBA23F5C10F0B67
 969.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 303--307
+Underfull \hbox (badness 10000) in paragraph at lines 271--275
 
  []
 
@@ -809,6 +794,21 @@ Underfull \hbox (badness 10000) in paragraph at lines 303--307
 
 (./_minted-output/8930FB83E6920709567C940526E7F3A775600F18B89BEFFBA23F5C10F0B67
 969.pygtex)
+Underfull \hbox (badness 10000) in paragraph at lines 286--288
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 290--292
+
+ []
+
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 305--307
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 318--320
 
  []
@@ -863,13 +863,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 354--356
 
 (./_minted-output/65A9060BDF09988DCCD5A8BBEC7AF6E975600F18B89BEFFBA23F5C10F0B67
 969.pygtex)
-runsystem(rm _minted-output/09E9EFAA076CC0861ECC14A01AC3387D75600F18B89BEFFBA23
-F5C10F0B67969.pygtex)...executed.
-
-runsystem(rm _minted-output/38B4A8B5CE80C7394109491EE944CE4975600F18B89BEFFBA23
-F5C10F0B67969.pygtex)...executed.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 384--385
 
  []
@@ -879,9 +872,9 @@ runsystem(rm output.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 7562 strings out of 492616
- 135022 string characters out of 6129482
- 236158 words of memory out of 5000000
+ 7560 strings out of 492616
+ 134894 string characters out of 6129482
+ 236012 words of memory out of 5000000
  11227 multiletter control sequences out of 15000+600000
  15200 words of font info for 36 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -897,7 +890,7 @@ texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/te
 xlive/2019/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/local/texl
 ive/2019/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texliv
 e/2019/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on output.pdf (13 pages, 199775 bytes).
+Output written on output.pdf (13 pages, 199757 bytes).
 PDF statistics:
  88 PDF objects out of 1000 (max. 8388607)
  62 compressed objects within 1 object stream

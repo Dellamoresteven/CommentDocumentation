@@ -80,7 +80,7 @@ switch (this.gameStateStartScreen) {
 
 
 \textbf{\large{\\Parameters}}:\\
-\textbf{void }: draw takes no arugments\\\textbf{\large{\\Returns}}:\\\textbf{void }: something should go ehre
+\textbf{void }: draw takes no arugments\\\textbf{\large{\\Returns}}:\\\textbf{void }: void
 
 \subsection{animateTitle}
 \textbf{Author}: Steven Dellamore 
@@ -252,38 +252,6 @@ switch(this.gameStateStartScreen) {
 \textbf{\large{\\Parameters}}:\\
 \textbf{void }: keyPressedStart takes no arugments\\\textbf{\large{\\Returns}}:\\\textbf{void}
 
-\section{Team}
-\textbf{Author}: Steven Dellamore, Richard Hansen \\
-\textbf{Description}: The team class will contain all the other players that are in your game, the team name and the token for your lobby. Once new players come addPlayer will be called to push a newplayer onto the playersInTeam array. \\
-
-
-
-\subsection{constructor}
-\textbf{Author}: Steven Dellamore 
-\vspace*{1\baselineskip}
-\begin{lstlisting}
-constructor()
-\end{lstlisting} 
-\vspace*{1\baselineskip}
-\textbf{Description}: The constructor gets called anytime someone joins or create a game. 
-
-
-\textbf{\large{\\Parameters}}:\\
-\textbf{void}: no parameters\\\textbf{\large{\\Returns}}:\\\textbf{Team }: A object of the class
-
-\subsection{addPlayer}
-\textbf{Author}: Steven Dellamore 
-\vspace*{1\baselineskip}
-\begin{lstlisting}
-addPlayer(player)
-\end{lstlisting} 
-\vspace*{1\baselineskip}
-\textbf{Description}: The add player function gets called whenever a bot or a real player joins your lobby. This function will also be called to populate the lobby when you join. 
-
-
-\textbf{\large{\\Parameters}}:\\
-\textbf{Player player}: This parameter is the new player/bot that is joining your team.\\\textbf{\large{\\Returns}}:\\\textbf{void }: no return
-
 \section{Player}
 \textbf{Author}: Steven Dellamore, Richard Hansen \\
 \textbf{Description}: Every user will have their own object of the Player class. This is going to be passed around to other people in the lobby. This class will tell the game screen who is who and will help identify moves. \\
@@ -317,6 +285,38 @@ setPlayerNum(num)
 
 \textbf{\large{\\Parameters}}:\\
 \textbf{int num }: sets the \mintinline[fontsize=\footnotesize]{javascript}{this.playerNum = num}\\\textbf{\large{\\Returns}}:\\\textbf{void }: returns nothing
+
+\section{Team}
+\textbf{Author}: Steven Dellamore, Richard Hansen \\
+\textbf{Description}: The team class will contain all the other players that are in your game, the team name and the token for your lobby. Once new players come addPlayer will be called to push a newplayer onto the playersInTeam array. \\
+
+
+
+\subsection{constructor}
+\textbf{Author}: Steven Dellamore 
+\vspace*{1\baselineskip}
+\begin{lstlisting}
+constructor()
+\end{lstlisting} 
+\vspace*{1\baselineskip}
+\textbf{Description}: The constructor gets called anytime someone joins or create a game. 
+
+
+\textbf{\large{\\Parameters}}:\\
+\textbf{void}: no parameters\\\textbf{\large{\\Returns}}:\\\textbf{Team }: A object of the class
+
+\subsection{addPlayer}
+\textbf{Author}: Steven Dellamore 
+\vspace*{1\baselineskip}
+\begin{lstlisting}
+addPlayer(player)
+\end{lstlisting} 
+\vspace*{1\baselineskip}
+\textbf{Description}: The add player function gets called whenever a bot or a real player joins your lobby. This function will also be called to populate the lobby when you join. 
+
+
+\textbf{\large{\\Parameters}}:\\
+\textbf{Player player}: This parameter is the new player/bot that is joining your team.\\\textbf{\large{\\Returns}}:\\\textbf{void }: no return
 
 \section{General}
 \textbf{Author}: Steven Dellamore, Richard Hansen \\

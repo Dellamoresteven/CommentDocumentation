@@ -72,17 +72,19 @@ string getNextComment( T &stream ) {
     string line;
     while (getline( stream, line )) {
         // found @TODO
-        auto found = line.find("//");
+        auto found = std::min(line.find("//"), line.find("*"));
         if (found != string::npos) {
-
             const std::string& chars = "\t\v\f\r ";
             line.erase(0, line.find_first_not_of(chars));
-
             if(line.at(0) == '/' && line.at(1) == '/'){
                 fullLine += line.substr(2);
-            } else {
-                fullLine += line;
-            }
+            } else if( line.at(0) == '*' && line != "/" && line != "*/" ) {
+                fullLine += line.substr(1);
+            } 
+            // else {
+            //     fullLine += line;
+            // }
+            cout << "HERERE: " << fullLine << endl;
             // found @TODO
             auto found = line.find("#code");
             if (found != string::npos) {
