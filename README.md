@@ -45,6 +45,7 @@
  * tell
  * it
  * to stop reading. | 
+ * @header constructor() | 
  * @param int num : tells how many numbers there are |
  * @returns int : how many numbers are left | 
  */
