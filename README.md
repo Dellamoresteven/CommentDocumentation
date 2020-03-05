@@ -3,6 +3,7 @@
 
 ## Template
 ### Frontpage
+```
 /**
  * #frontpage Cool Front Page |
  * @author My Name |
@@ -14,7 +15,9 @@
  * @email my email |
  * @office my office |
  */
+```
 ### Classes
+```
 /**
  * #class myClassTitle |
  * @author my Name |
@@ -30,8 +33,9 @@
  * that explains how great my class is
  * and what it does. |
  */
-
+```
 ### Functions
+```
 /**
  * #function myClassTitle::myFunctionName |
  * @author My name |
@@ -44,12 +48,14 @@
  * @param int num : tells how many numbers there are |
  * @returns int : how many numbers are left | 
  */
+```
 
 ### inline code
 Inside desc and param's you can put @inline{code}. The code will
 be assumed to be the same type as the class its in. 
 
 Ex.
+```
 /**
  * #function StartScreen::constructor |
  * @author Steven Dellamore |
@@ -69,11 +75,12 @@ Ex.
  * @param void : constructor takes no params |
  * @returns StartScreen : An object of start class class | 
  */
-
+```
 ### Block Code
 Block code allows you to create comment varibles and use them anywhere in ur program.
 
 Ex.
+```
 // #code StartScreenContorVars javascript
 this.TokenBoxText = ""; 
 this.usernameBoxStroke = false; 
@@ -82,7 +89,7 @@ this.usernameTextTouched = false;
 this.gameStateStartScreen = 0;
 this.titleAnimation = [300, 500, 400, 700];
 // |
-
+```
 // #code tells us its a code block, 
 // StartScreenContorVars is the var name 
 // javascript is the language
