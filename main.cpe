@@ -61,7 +61,6 @@ def string getNextComment( &stream ) {
             // else {
             //     fullLine += line;
             // }
-            cout << "HERERE: " << fullLine << endl;
             var found = line.find("#code");
             if (found != string::npos) {
                 string temp = getVar( stream );
@@ -137,10 +136,11 @@ def parseLineWithComment( line, &file ) {
                 varsS * e = new config::varsS();
                 e->typ = "#code";
                 lineReaderSS >> e->name;
-                // lineReaderSS >> e->language; \mintinline[fontsize=\footnotesize]{C++}{int x = 5}
+                lineReaderSS >> e->language;
+                cout << "EFAWFEWAFA: " << e->language << endl;
                 
                 e->code = "\n\\begin{minted}[fontsize=\\footnotesize]{" + e->language + "}\n" + line.substr(line.find("\n") + 1) + "\n\\end{minted}\n";
-                // e->inlinecode = "\n\\mintinline[fontsize=\\footnotesize]{int x = 5}\n" + line.substr(line.find("\n") + 1) + "\n\\end{minted}\n";
+                
                 vars.push_back( e );
             } else {
                 Header * e = new config::Header();

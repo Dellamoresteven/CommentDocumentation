@@ -1,10 +1,10 @@
 /**
  * #frontpage test |
- * @author Steven Dellamore |
- * @date Feb 28th 2020 |
+ * @author Steven Dellamore \\ Indhu Ramanathan \\ Richard Hansen \\ Columbus Holt |
+ * @date March 5th 2020 |
  * @version 1.0.0 |
  * @company TeamTris |
- * @title StartScreen Class Documentation |
+ * @title TeamTris Code Documentation |
  * @location West Lafayette, IN |
  * @email dellamoresteven@gmail.com |
  * @office CS407 |
@@ -18,7 +18,7 @@
  * create all the buttons needed for the user to 
  * get into a game with their friends. The mouseClicks
  * and the keyboard imports all all forwarded to this class
- * when gamestate == 0 |
+ * when @inline{gamestate == 0} |
  */
 class StartScreen {
 

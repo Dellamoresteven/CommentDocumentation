@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  5 MAR 2020 10:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  6 MAR 2020 10:00
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -509,13 +509,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 34--36
 
 (./_minted-output/default-pyg-prefix.pygstyle)
 (./_minted-output/default.pygstyle)
-runsystem(pygmentize -l javascript -f latex -P commandprefix=PYG -F tokenmerge 
--o _minted-output/D5AB24F08683B03EBBF74B4119077AC675600F18B89BEFFBA23F5C10F0B67
-969.pygtex output.pyg)...executed.
-
-
-(./_minted-output/D5AB24F08683B03EBBF74B4119077AC675600F18B89BEFFBA23F5C10F0B67
-969.pygtex
+(./_minted-output/16C300B6E1F45C5E39FD372EFEE62FB3BF3CFFB99D990CFCCCAD36A0A2CF1
+919.pygtex
 LaTeX Font Info:    Try loading font information for T1+cmtt on input line 1.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
@@ -525,388 +520,47 @@ LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
 )
 \openout4 = `output.pyg'.
 
-runsystem(pygmentize -l javascript -f latex -P commandprefix=PYG -F tokenmerge 
--o _minted-output/C7D8F1886F1DCE7128A2A61AA8A651BE75600F18B89BEFFBA23F5C10F0B67
-969.pygtex output.pyg)...executed.
+runsystem(pygmentize -l c++ -f latex -P commandprefix=PYG -F tokenmerge -o _min
+ted-output/608A417D9EC65BF55D5B4F8DF6FB3536BF3CFFB99D990CFCCCAD36A0A2CF1919.pyg
+tex output.pyg)...executed.
 
 
-(./_minted-output/C7D8F1886F1DCE7128A2A61AA8A651BE75600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
+(./_minted-output/608A417D9EC65BF55D5B4F8DF6FB3536BF3CFFB99D990CFCCCAD36A0A2CF1
+919.pygtex)
+runsystem(rm _minted-output/608A417D9EC65BF55D5B4F8DF6FB353675600F18B89BEFFBA23
+F5C10F0B67969.pygtex)...executed.
 
 
-(./_minted-output/9FDFB83CE866EF29893DA15028B7523975600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-runsystem(pygmentize -l javascript -f latex -P commandprefix=PYG -F tokenmerge 
--o _minted-output/E8CAF27DE01F4DE5C56B4E20A52F55B275600F18B89BEFFBA23F5C10F0B67
-969.pygtex output.pyg)...executed.
-
-
-(./_minted-output/E8CAF27DE01F4DE5C56B4E20A52F55B275600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-Overfull \hbox (28.9528pt too wide) in paragraph at lines 55--56
-\T1/cmr/m/n/12 These vari-bles will be up-dated through-out the life of start s
-creen. []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 58--60
+Underfull \hbox (badness 10000) in paragraph at lines 53--54
 
  []
 
-[2]
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/50B781A30BBEB406D5BAD68D15BA53F875600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/D809F1D3B853108A0B67A02AED3B483575600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout3 = `output.pyg'.
-
-
-(./_minted-output/6221D1D12AC4C6F3C75D62051D3E9BF075600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 82--84
-
- []
-
-\openout3 = `output.pyg'.
-
-
-(./_minted-output/E97E4F31913D5A0AF323B794E512A0EA75600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/23D6901733E8998E5A016243D4BC070275600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/372E25F23B5A8AE33C7BA203412ACE3075600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/3601DFE5E84ACE3EB747AB431AD07F0475600F18B89BEFFBA23F5C10F0B67
-969.pygtex) [3]
-Underfull \hbox (badness 10000) in paragraph at lines 101--103
-
- []
-
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/3522E459E26C2B825588D6B25DECE51E75600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/9FDFB83CE866EF29893DA15028B7523975600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 114--116
-
- []
-
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/F995242FE53726C5ACA15A9749D3FA3C75600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout3 = `output.pyg'.
-
-
-(./_minted-output/2812DB0E8B51F7A0B9B4214ED89ABFEB75600F18B89BEFFBA23F5C10F0B67
-969.pygtex [4])
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/4B7AC3B287B28FE1F27F7032533A433F75600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 149--151
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 162--164
-
- []
-
-[5]
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/CB790B8072563C8CE9D34D0706572EB775600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/D809F1D3B853108A0B67A02AED3B483575600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/897316929176464EBC9AD085F31E728475600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/66DEC0BE424A5410E14893B9E275E66475600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout3 = `output.pyg'.
-
-
-(./_minted-output/8D04414D3921C138111448FBF61EF96A75600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout3 = `output.pyg'.
-
-
-(./_minted-output/E0E23D11AC9650D01161F15B16C615F775600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/3D5BD20BB5BD0C8A122CEFD519F9615075600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 193--195
-
- []
-
-[6]
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/4B74BE8121DB525956A873819269648775600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/74D9A83219CABAAB06A69FD318873F3375600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/D42F2DA1DF5ECDF29BE4AC27EDDA0C1275600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 206--208
-
- []
-
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/8F9E63F0FF16C644E77A5785E233BF6C75600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout3 = `output.pyg'.
-
-
-(./_minted-output/DF20F64EBB9850B665A4DF75892F7CA075600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/8F9E63F0FF16C644E77A5785E233BF6C75600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/1C74BFFFD0F6DEAF9DBE30B413228BAA75600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/74B560B52B9B685CF6766E561FF2D6F575600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/50843420048C6327C8E0C2F67C0B7AF675600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-Overfull \hbox (4.9509pt too wide) in paragraph at lines 225--226
-\T1/cmr/m/n/12 If [] re-turns true, then we set []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 228--230
-
- []
-
-[7]
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/2A05413200BDACDDEBDA7AC44160907875600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/E86FC98633B7C4CFE6DE5FBE65E6CCA275600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/D809F1D3B853108A0B67A02AED3B483575600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout3 = `output.pyg'.
-
-
-(./_minted-output/29AAF2256D61FC84244C3BFAEA20F94275600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 252--254
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 256--258
-
- []
-
-[8]
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/A591D44360DC82294B644B9B1F1C891275600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/3601DFE5E84ACE3EB747AB431AD07F0475600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/74D9A83219CABAAB06A69FD318873F3375600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/D42F2DA1DF5ECDF29BE4AC27EDDA0C1275600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 271--275
-
- []
-
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/F6B23E718F9CEBC0D8599151C4A16F3D75600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/CB54072DD80AC9B33187118FAB972C4F75600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/8930FB83E6920709567C940526E7F3A775600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 286--288
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 290--292
-
- []
-
-[9]
-Underfull \hbox (badness 10000) in paragraph at lines 305--307
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 318--320
-
- []
-
-[10]
-Underfull \hbox (badness 10000) in paragraph at lines 322--324
-
- []
-
-\openout3 = `output.pyg'.
-
-
-(./_minted-output/C52E7F119F4D429FBFF485EB096EA8FD75600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/7B6961BE597256F41008A91AA863D5A075600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/B8D876BE880061724D4C76C0727EC7F675600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/65A9060BDF09988DCCD5A8BBEC7AF6E975600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 354--356
-
- []
-
-[11]
-\openout3 = `output.pyg'.
-
-
-(./_minted-output/713FEF980A8FD612D9D769F8463EB6E375600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/7B6961BE597256F41008A91AA863D5A075600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/B8D876BE880061724D4C76C0727EC7F675600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-\openout4 = `output.pyg'.
-
-
-(./_minted-output/65A9060BDF09988DCCD5A8BBEC7AF6E975600F18B89BEFFBA23F5C10F0B67
-969.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 384--385
-
- []
-
-[12] (./output.aux)
+[2] (./output.aux)
 runsystem(rm output.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 7560 strings out of 492616
- 134894 string characters out of 6129482
- 235720 words of memory out of 5000000
- 11227 multiletter control sequences out of 15000+600000
- 15200 words of font info for 36 fonts, out of 8000000 for 9000
+ 7382 strings out of 492616
+ 120553 string characters out of 6129482
+ 225615 words of memory out of 5000000
+ 11186 multiletter control sequences out of 15000+600000
+ 14885 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,6n,35p,845b,971s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,5n,35p,845b,971s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></
 usr/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></us
 r/local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/
 local/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfcc1200.pfb></usr/lo
 cal/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfcc1728.pfb></usr/loca
-l/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfit1000.pfb></usr/local/
-texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/te
-xlive/2019/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/local/texl
-ive/2019/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texliv
-e/2019/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on output.pdf (13 pages, 199967 bytes).
+l/texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/
+texlive/2019/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb></usr/local/te
+xlive/2019/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texl
+ive/2019/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
+Output written on output.pdf (3 pages, 132633 bytes).
 PDF statistics:
- 88 PDF objects out of 1000 (max. 8388607)
- 62 compressed objects within 1 object stream
+ 51 PDF objects out of 1000 (max. 8388607)
+ 36 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

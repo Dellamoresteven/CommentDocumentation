@@ -5,7 +5,7 @@ URL = https://github.com/Dellamoresteven/C-Sugar */
 #define MY_CREATETEX
 
 // author: Steven Dellamore
-// date: 2020-3-5
+// date: 2020-3-6
 // version: 1.0.0
 
 
@@ -273,6 +273,19 @@ namespace createtex {
             for( int j = 0; j < header->configMap.size(); j++ ) {
                 if(header->configMap.at(j).first == vecFind.at(i)) {
                     replace( contents, vecReplace.at(i), header->configMap.at(j).second, header->language );
+                    while(true){
+                        auto found = contents.find( "@link{" );
+                        if( found != string::npos ) {
+                            replaceLinks( contents, found );
+                        } else {
+                            found = contents.find( "@inline{" );
+                            if( found != string::npos ) {
+                                replaceInlines( contents, found, header->language );
+                            } else {
+                                break;
+                            }
+                        }
+                    }
                     break;
                 } else if( (j + 1) == header->configMap.size()) {
                     std::cout << yellow << "Did not Provide " << vecFind.at(i) << std::endl << normal;

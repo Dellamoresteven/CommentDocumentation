@@ -2,7 +2,7 @@
 URL = https://github.com/Dellamoresteven/C-Sugar */
 
 // author: Steven Dellamore
-// date: 2020-3-5
+// date: 2020-3-6
 // version: 1.0.0
 
 
@@ -84,7 +84,6 @@ string getNextComment( T &stream ) {
             // else {
             //     fullLine += line;
             // }
-            cout << "HERERE: " << fullLine << endl;
             // found @TODO
             auto found = line.find("#code");
             if (found != string::npos) {
@@ -162,10 +161,11 @@ auto parseLineWithComment( T line, U &file ) {
                 varsS * e = new config::varsS();
                 e->typ = "#code";
                 lineReaderSS >> e->name;
-                // lineReaderSS >> e->language; \mintinline[fontsize=\footnotesize]{C++}{int x = 5}
+                lineReaderSS >> e->language;
+                cout << "EFAWFEWAFA: " << e->language << endl;
                 
                 e->code = "\n\\begin{minted}[fontsize=\\footnotesize]{" + e->language + "}\n" + line.substr(line.find("\n") + 1) + "\n\\end{minted}\n";
-                // e->inlinecode = "\n\\mintinline[fontsize=\\footnotesize]{int x = 5}\n" + line.substr(line.find("\n") + 1) + "\n\\end{minted}\n";
+                
                 vars.push_back( e );
             } else {
                 Header * e = new config::Header();
