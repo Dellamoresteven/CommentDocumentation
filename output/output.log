@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  6 MAR 2020 10:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  7 MAR 2020 11:08
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -520,17 +520,9 @@ LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
 )
 \openout4 = `output.pyg'.
 
-runsystem(pygmentize -l c++ -f latex -P commandprefix=PYG -F tokenmerge -o _min
-ted-output/608A417D9EC65BF55D5B4F8DF6FB3536BF3CFFB99D990CFCCCAD36A0A2CF1919.pyg
-tex output.pyg)...executed.
-
 
 (./_minted-output/608A417D9EC65BF55D5B4F8DF6FB3536BF3CFFB99D990CFCCCAD36A0A2CF1
 919.pygtex)
-runsystem(rm _minted-output/608A417D9EC65BF55D5B4F8DF6FB353675600F18B89BEFFBA23
-F5C10F0B67969.pygtex)...executed.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 53--54
 
  []
@@ -540,8 +532,8 @@ runsystem(rm output.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 7382 strings out of 492616
- 120553 string characters out of 6129482
+ 7381 strings out of 492616
+ 120489 string characters out of 6129482
  225615 words of memory out of 5000000
  11186 multiletter control sequences out of 15000+600000
  14885 words of font info for 35 fonts, out of 8000000 for 9000

@@ -1,6 +1,7 @@
 make: main.cpp config.cpp createTex.cpp
-	g++ --std=c++2a -Wall -o doc \
+	g++ --std=c++2a -Wall -lboost_program_options -o doc \
 				main.cpp \
+				token.cpp \
 				config.cpp \
 				
 

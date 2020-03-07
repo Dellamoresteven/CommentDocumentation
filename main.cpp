@@ -2,7 +2,7 @@
 URL = https://github.com/Dellamoresteven/C-Sugar */
 
 // author: Steven Dellamore
-// date: 2020-3-6
+// date: 2020-3-7
 // version: 1.0.0
 
 
@@ -23,9 +23,12 @@ URL = https://github.com/Dellamoresteven/C-Sugar */
 #include <string>
 #include <functional>
 #include <iomanip>
+#include "boost/program_options.hpp" 
+using namespace boost::program_options;
 
 #include "config.cpp"
 #include "createTex.cpp"
+#include "token.cpp"
 
 using namespace std;
 using namespace config;
@@ -34,161 +37,6 @@ using namespace createtex;
 #define green "\u001b[32m"
 #define red "\u001b[31m"
 #define normal "\033[0m"
-
-template <typename T >
-string getVar( T &stream ) {
-    string fullLine = "";
-    string line;
-    int numTabSpace = 0;
-    const std::string& chars = "\t\v\f\r ";
-    while ( getline( stream, line ) ) {
-        auto found = line.find("|");
-        auto foundComment = line.find("//");
-        if( found != string::npos && foundComment != string::npos ){
-            // cout << "fullLine:\n" << fullLine << endl;
-            return fullLine;
-        } else {
-            if( fullLine == "" ) {
-                numTabSpace = line.find_first_not_of(chars);
-                line.erase(0, numTabSpace);
-                fullLine += line;
-            } else {
-                int checkTabSpace = line.find_first_not_of(chars);
-                if( checkTabSpace >= numTabSpace ) {
-                    line.erase(0, numTabSpace);
-                }
-                fullLine += "\n";
-                fullLine += line;
-            }
-        }
-    }
-    cout << "ERROR getVar\n";
-    return "-1";
-}
-
-template <typename T >
-string getNextComment( T &stream ) {
-    string fullLine = "";
-    string line;
-    while (getline( stream, line )) {
-        // found @TODO
-        auto found = std::min(line.find("//"), line.find("*"));
-        if (found != string::npos) {
-            const std::string& chars = "\t\v\f\r ";
-            line.erase(0, line.find_first_not_of(chars));
-            if(line.at(0) == '/' && line.at(1) == '/'){
-                fullLine += line.substr(2);
-            } else if( line.at(0) == '*' && line != "/" && line != "*/" ) {
-                fullLine += line.substr(1);
-            } 
-            // else {
-            //     fullLine += line;
-            // }
-            // found @TODO
-            auto found = line.find("#code");
-            if (found != string::npos) {
-                string temp = getVar( stream );
-                // cout << "temp:\n" << temp << endl;
-                fullLine = "//" + fullLine + "\n" + temp;
-                return fullLine;
-            }
-
-            if(line.at(line.length() - 1) == '|' || line.at(line.length() - 2) == '|'){
-                fullLine = "//" + fullLine;
-                // cout << "fullLine: " << fullLine << endl << endl;
-                return fullLine;
-            }
-        }
-    }
-    return "-1";
-}
-
-static Header * currHeader;
-static vector<string> validTagList = { "#frontpage", "#class", "#code" };
-static vector<string> validTagListIsInner = { "#function" };
-static vector<string> validConfigList = { "@author", "@date", 
-                                        "@version", "@company", 
-                                        "@title", "@location",
-                                        "@email", "@name", "@desc",
-                                        "@code", "@param", "@return", "@header", 
-                                        "@office", "@returns", "@language" };
-
-
-template <typename T, typename U >
-auto parseLineWithComment( T line, U &file ) {
-    // cout << "line:\n" << line << endl;
-    if( line == "-1" ) return;
-
-    stringstream lineReaderSS( line );
-    string word;
-    
-
-    auto getSubstance = [&](auto &stream) mutable {
-        string name; 
-        while( stream >> word  ) {
-            if(word == "|") {
-                return name.substr( 0, name.length() - 1 );
-            }
-            name += word;
-            name += " ";
-        }
-        cout << "UH OHOHH" << endl;
-        return name.substr( 0, name.length() - 1 ); 
-    };
-
-    while( lineReaderSS >> word ) {
-        if( std::find( validTagListIsInner.begin(), validTagListIsInner.end(), word ) != validTagListIsInner.end() ) {
-            Header * e = new config::Header();
-            e->typ = word;
-            string longerName;
-            lineReaderSS >> longerName;
-            size_t found = longerName.find("::"); 
-            if (found != string::npos) {
-                for( int i = 0; i < headerMap.size(); i++ ) {
-                    if(headerMap[i]->name == longerName.substr(0,found)){
-                        e->depth = headerMap[i]->depth + 1;
-                        e->language = headerMap[i]->language;
-                        e->name = longerName.substr(found + 2);
-                        headerMap[i]->inner.push_back(e);
-                    }
-                } 
-            }
-            currHeader = e;
-        } 
-        if( std::find( validTagList.begin(), validTagList.end(), word ) != validTagList.end() ) {
-            if(word == "#code") {
-                // cout << "line2\n" <<  << endl;
-                varsS * e = new config::varsS();
-                e->typ = "#code";
-                lineReaderSS >> e->name;
-                lineReaderSS >> e->language;
-                cout << "EFAWFEWAFA: " << e->language << endl;
-                
-                e->code = "\n\\begin{minted}[fontsize=\\footnotesize]{" + e->language + "}\n" + line.substr(line.find("\n") + 1) + "\n\\end{minted}\n";
-                
-                vars.push_back( e );
-            } else {
-                Header * e = new config::Header();
-                e->typ = word;
-                lineReaderSS >> e->name;
-                headerMap.push_back( e );
-                currHeader = e;
-            }
-        }
-
-        if( currHeader != NULL ) {
-            if( std::find( validConfigList.begin(), validConfigList.end(), word ) != validConfigList.end() ) {
-                string temp = word;
-                string value = getSubstance( lineReaderSS );
-                if( temp == "@language" ) {
-                    currHeader->language = value;
-                }else {
-                    currHeader->configMap.push_back(std::pair<string,string>( temp, value ));
-                }
-            }
-        }
-    }
-}
 
 ostream& operator<<(ostream& os, const Header* hd) {
     os << green << std::setw(hd->depth * 8) <<"type: " << hd->typ << std::setw( (50 - hd->typ.length()) ) << " name: " << hd->name << "\n";
@@ -208,29 +56,55 @@ ostream& operator<<(ostream& os, const varsS* hd) {
 }
 
 int main(int argc, char* argv[])  {
-    ifstream commentMakeFile( "CommentMake.txt" );
-    string fileName;
-    while ( getline( commentMakeFile, fileName ) ) {
-        ifstream file( fileName );
-        string found;
-        while( found != "-1" ) {
-            found = getNextComment( file );
-            parseLineWithComment( found, file ); 
+    /* for later */
+    // string outfile = "output.tex";
+    // try { 
+    //     options_description desc("Options"); 
+    //     desc.add_options() 
+    //         ("help,h", "Print help messages") 
+    //         ("output,o", value(&outfile), "output File Name");
+        
+    //     variables_map vm; 
+    //     try {
+    //         store(parse_command_line(argc, argv, desc), vm);
+    //         if ( vm.count("help")  ) { 
+    //             std::cout << "You should know" << endl;
+    //             return 1; 
+    //         }
+    //         notify(vm);
+    //     } catch(error& e) { 
+    //         std::cerr << "ERROR: " << e.what() << std::endl << std::endl; 
+    //         return -1; 
+    //     }
+        
+        token * tok = new token();
+        ifstream commentMakeFile( "CommentMake.txt" );
+        string fileName;
+        while ( getline( commentMakeFile, fileName ) ) {
+            ifstream file( fileName );
+            string found;
+            while( found != "-1" ) {
+                found = tok->getNextComment( file );
+                tok->parseLineWithComment( found, file ); 
+            }
         }
-    }
-    std::cout << "HEADER MAP" << std::endl;
-    // Printing out the entire headerMap vector with delim: "\n"
-    for (auto i = headerMap.begin(); i != headerMap.end(); ++i)
-    {
-        std::cout << *i << "\n";
-    }
-    cout << normal;
-    std::cout << "\n\nVARS" << std::endl;
-    // Printing out the entire vars vector with delim: "\n"
-    for (auto i = vars.begin(); i != vars.end(); ++i)
-    {
-        std::cout << *i << "\n";
-    }
-    startDoc();
-    return 0;
+        std::cout << "HEADER MAP" << std::endl;
+        // Printing out the entire headerMap vector with delim: "\n"
+        for (auto i = headerMap.begin(); i != headerMap.end(); ++i)
+        {
+                std::cout << *i << "\n";
+        }
+        cout << normal;
+        std::cout << "\n\nVARS" << std::endl;
+        // Printing out the entire vars vector with delim: "\n"
+        for (auto i = vars.begin(); i != vars.end(); ++i)
+        {
+                std::cout << *i << "\n";
+        }
+        startDoc();
+        return 0;
+    // } catch(std::exception& e) {
+    //     cout << "EERROROR: " << e.what();
+    //     return -1;
+    // }
 }
