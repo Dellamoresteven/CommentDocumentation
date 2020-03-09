@@ -1,6 +1,6 @@
 #bin/sh
-cpe config.cpe
-cpe createTex.cpe
-cpe token.cpe
-cpe main.cpe
+cpe src/config.cpe
+cpe src/createTex.cpe
+cpe src/token.cpe
+cpe src/main.cpe
 sudo make
