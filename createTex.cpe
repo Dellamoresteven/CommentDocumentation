@@ -159,8 +159,8 @@ class texWriter {
                 boost::to_upper(opt2);
                 auto found2 = contents.find(opt2);
                 if( found2 != string::npos ) {
-                    size_t secondNL = contents.find('\n', found2);
-                    size_t firstNL = contents.rfind('\n', found2);
+                    size_t secondNL = contents.find("\\opt", found2);
+                    size_t firstNL = contents.rfind("\\opt", found2);
                     contents.erase(firstNL, secondNL - firstNL);
                 }
             }

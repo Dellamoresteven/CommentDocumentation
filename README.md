@@ -51,6 +51,23 @@
  */
 ```
 
+### Methods
+```
+/**
+ * #function myClassTitle::myFunctionName::MyMethodName |
+ * @author My name |
+ * @desc This is another desc but once again
+ * can be one line or multi line. It just
+ * depeneds where you put the pipe to 
+ * tell
+ * it
+ * to stop reading. | 
+ * @header constructor232() | 
+ * @param int num : tells how many numbers there are |
+ * @returns int : how many numbers are left | 
+ */
+```
+
 ### inline code
 Inside desc and param's you can put @inline{code}. The code will
 be assumed to be the same type as the class its in. 

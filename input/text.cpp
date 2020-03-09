@@ -13,7 +13,6 @@
 
 /**
  * #class StartScreen |
- * @author Steven Dellamore |
  * @language c++ | 
  * @desc Startscreen will build the startscreen and
  * create all the buttons needed for the user to 
@@ -24,9 +23,7 @@
 
 	/**
      * #function StartScreen::constructor |
-     * @author Steven Dellamore |
 	 * @desc @link{testVar} hahha @inline{int x = 6;} |
-	 * @header constructor() | 
 	 * @param void : constructor takes no params |
 	 * @returns StartScreen : An object of start class class | 
 	 */
