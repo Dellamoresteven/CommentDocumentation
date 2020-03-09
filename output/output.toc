@@ -1,2 +1,5 @@
 \contentsline {section}{\numberline {1}StartScreen}{2}% 
 \contentsline {subsection}{\numberline {1.1}constructor}{2}% 
+\contentsline {subsection}{\numberline {1.2}constructor2}{2}% 
+\contentsline {subsubsection}{\numberline {1.2.1}IAmAMethod}{3}% 
+\contentsline {section}{\numberline {2}StartScreen2}{3}% 

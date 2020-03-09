@@ -5,7 +5,7 @@ URL = https://github.com/Dellamoresteven/C-Sugar */
 #define MY_CONFIG
 
 // author: Steven Dellamore
-// date: 2020-3-7
+// date: 2020-3-9
 // version: 1.0.0
 
 
@@ -34,34 +34,29 @@ using namespace std;
 
 namespace config {
 
-    struct Header {
-        string typ; // #header 
+    struct FrontPage {
         string name = "NULL"; // name
         vector< pair<string, string> > configMap;
         int depth = 0;
-        vector<Header*> inner;
-        string language = "javascript";
     };
 
     struct Methods {
-        string typ; // #header 
         string name = "NULL"; // name
         vector< pair<string, string> > configMap;
         int depth = 0;
+        vector<Methods*> inner; // unused
         string language = "javascript";
     };
     
     struct Functions {
-        string typ; // #header 
         string name = "NULL"; // name
         vector< pair<string, string> > configMap;
         int depth = 0;
-        vector<Header*> inner;
+        vector<Methods*> inner;
         string language = "javascript";
     };
 
     struct Classes {
-        string typ; // #header 
         string name = "NULL"; // name
         vector< pair<string, string> > configMap;
         int depth = 0;
@@ -69,17 +64,20 @@ namespace config {
         string language = "javascript";
     };
 
-
-
     struct varsS {
-        string typ; 
         string name = "NULL";
         string code;
         string inlinecode;
         string language = "javascript";
-    };
-    
-    static vector<Header*> headerMap;
+    };          
+ 
+    static vector<Methods*> methods;
+
+    static vector<Functions*> functions;
+
+    static vector<Classes*> classes;
+
+    static FrontPage * frontPage = new FrontPage();
 
     static vector<varsS*> vars;
 }

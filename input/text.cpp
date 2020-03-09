@@ -33,3 +33,34 @@
 // #code testVar c++
 int x = 5; 
 // |
+
+	/**
+     * #function StartScreen::constructor2 |
+     * @author Steven Dellamore |
+	 * @desc @link{testVar} hahha @inline{int x = 6;} |
+	 * @header constructor() | 
+	 * @param void : constructor takes no params |
+	 * @returns StartScreen : An object of start class class | 
+	 */
+
+	/**
+     * #method StartScreen::constructor2::IAmAMethod |
+     * @author Steven Dellamore |
+	 * @desc @link{testVar} hahha @inline{int x = 6;} |
+	 * @header constructor() | 
+	 * @param void : constructor takes no params |
+	 * @param void2 : constructor take2s no params |
+	 * @returns void | 
+	 */
+
+
+/**
+ * #class StartScreen2 |
+ * @author Steven Dellamore |
+ * @language c++ | 
+ * @desc Startscreen will build the startscreen and
+ * create all the buttons needed for the user to 
+ * get into a game with their friends. The mouseClicks
+ * and the keyboard imports all all forwarded to this class
+ * when gamestate == 0 |
+ */

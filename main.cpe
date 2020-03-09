@@ -12,28 +12,14 @@ using namespace boost::program_options;
 
 using namespace std;
 using namespace config;
-using namespace createtex;
+// using namespace createtex;
 
+#define cyan "\u001b[36m"
+#define magenta "\u001b[35m"
+#define yellow "\u001b[33m"
 #define green "\u001b[32m"
 #define red "\u001b[31m"
 #define normal "\033[0m"
-
-ostream& operator<<(ostream& os, const Header* hd) {
-    os << green << std::setw(hd->depth * 8) <<"type: " << hd->typ << std::setw( (50 - hd->typ.length()) ) << " name: " << hd->name << "\n";
-    for_each(hd->configMap.begin(), hd->configMap.end(), [&](const std::pair<string,string> &p){
-        os << red << std::setw(hd->depth * 8) << "{" << p.first << ": " << std::setw( (56 - p.first.length()) ) << p.second << "}\n" << normal;
-    });
-    for( int i = 0; i < hd->inner.size(); i++ ) {
-        cout << hd->inner[i];
-    }
-    return os;
-}
-
-ostream& operator<<(ostream& os, const varsS* hd) {
-    os << green << "name: " << hd->name << " language: " << hd->language << "\n";
-    os << red <<"code:\n" << hd->code << "\n" << normal;
-    return os;
-}
 
 m {
     /* for later */
@@ -58,6 +44,7 @@ m {
     //     }
         
         token * tok = new token();
+        texWriter * textwriter = new texWriter();
         ifstream commentMakeFile( "CommentMake.txt" );
         string fileName;
         while ( getline( commentMakeFile, fileName ) ) {
@@ -68,13 +55,49 @@ m {
                 tok->parseLineWithComment( found, file ); 
             }
         }
-        println("HEADER MAP");
-        printv(headerMap, "\n");
-        cout << normal;
-        println("\n\nVARS");
-        printv(vars, "\n");
-        startDoc();
-        return 0;
+        tok->link();
+        textwriter->startDoc();
+
+        cout << "FRONTPAGE:\n";
+        for( auto elem : config::frontPage->configMap ) {
+            cout << green << elem.first << ":" << elem.second << endl << normal;
+        }
+        cout << "\nCLASSES\n";
+        for( auto elem : config::classes ) {
+            for( auto elemMap : elem->configMap ) {
+                cout << red << elemMap.first << ":" << elemMap.second << endl << normal;
+            }
+            for( auto elemInner : elem->inner ) {
+                cout << green << elemInner->name << endl << normal;
+            }
+            cout << endl;
+        }
+
+        cout << "\nFUNCTIONS\n";
+        for( auto elem : config::functions ) {
+            cout << "Name: " << elem->name << endl;
+            for( auto elemMap : elem->configMap ) {
+                cout << yellow << elemMap.first << ":" << elemMap.second << endl << normal;
+            }
+            for( auto elemInner : elem->inner ) {
+                cout << green << elemInner->name << endl << normal;
+            }
+            cout << endl;
+        }
+
+        cout << "\nMETHODS\n";
+        for( auto elem : config::methods ) {
+            for( auto elemMap : elem->configMap ) {
+                cout << magenta << elemMap.first << ":" << elemMap.second << endl << normal;
+            }
+            cout << endl;
+        }
+
+        cout << "\nVARS\n";
+        for( auto elem : config::vars ) {
+            cout << cyan << "Name:" << elem->name << "Code: " << elem->code << "Lan:" << elem->language << endl << normal;
+        }
+
     // } catch(std::exception& e) {
     //     cout << "EERROROR: " << e.what();
     //     return -1;

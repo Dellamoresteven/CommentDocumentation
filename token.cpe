@@ -3,20 +3,22 @@
 #inc e
 
 #include "config.cpp"
+#include <boost/algorithm/string.hpp>
 
 using namespace std;
+using namespace boost;
 
 class token {
     private: 
-    config::Header * currHeader;
-    vector<string> validTagList = { "#frontpage", "#class", "#code" };
-    vector<string> validTagListIsInner = { "#function" };
-    vector<string> validConfigList = { "@author", "@date", 
-                                        "@version", "@company", 
-                                        "@title", "@location",
-                                        "@email", "@name", "@desc",
-                                        "@code", "@param", "@return", "@header", 
-                                        "@office", "@returns", "@language" };
+    string curr;
+    // vector<string> validTagList = { "#frontpage", "#class", "#code", "#function", "#method" };
+    // vector<string> validTagListIsInner = { "#function" };
+    // vector<string> validConfigList = { "@author", "@date", 
+    //                                     "@version", "@company", 
+    //                                     "@title", "@location",
+    //                                     "@email", "@name", "@desc",
+    //                                     "@code", "@param", "@return", "@header", 
+    //                                     "@office", "@returns", "@language" };
     public:
     token() {}
 
@@ -84,6 +86,22 @@ class token {
         return "-1";
     }
 
+    def link(){
+        auto linkerLambda = [&](auto whatToSearch, auto whatToSearch2){
+            for( auto& methodElem : whatToSearch ) {
+                int pos = methodElem->name.find_last_of(":");
+                string tempMatch = methodElem->name.substr(0, pos-1);
+                methodElem->name = methodElem->name.substr(pos+1);
+                for( auto& funName : whatToSearch2 ) {
+                    if( funName->name == tempMatch ){
+                        funName->inner.push_back(methodElem);
+                    }
+                }
+            }
+        };
+        linkerLambda(config::methods, config::functions);
+        linkerLambda(config::functions, config::classes);
+    }
 
     def parseLineWithComment( line, &file ) {
         // cout << "line:\n" << line << endl;
@@ -107,54 +125,46 @@ class token {
         };
 
         while( lineReaderSS >> word ) {
-            if( std::find( validTagListIsInner.begin(), validTagListIsInner.end(), word ) != validTagListIsInner.end() ) {
-                config::Header * e = new config::Header();
-                e->typ = word;
-                string longerName;
-                lineReaderSS >> longerName;
-                size_t found = longerName.find("::"); 
-                if (found != string::npos) {
-                    for( int i = 0; i < config::headerMap.size(); i++ ) {
-                        if(config::headerMap[i]->name == longerName.substr(0,found)){
-                            e->depth = config::headerMap[i]->depth + 1;
-                            e->language = config::headerMap[i]->language;
-                            e->name = longerName.substr(found + 2);
-                            config::headerMap[i]->inner.push_back(e);
-                        }
-                    } 
-                }
-                currHeader = e;
-            } 
-            if( std::find( validTagList.begin(), validTagList.end(), word ) != validTagList.end() ) {
-                if(word == "#code") {
-                    // cout << "line2\n" <<  << endl;
-                    config::varsS * e = new config::varsS();
-                    e->typ = "#code";
-                    lineReaderSS >> e->name;
-                    lineReaderSS >> e->language;
-                    
-                    e->code = "\n\\begin{minted}[fontsize=\\footnotesize]{" + e->language + "}\n" + line.substr(line.find("\n") + 1) + "\n\\end{minted}\n";
-                    
-                    config::vars.push_back( e );
+            if( word == "#frontpage" ) {
+                curr = "frontpage";
+            } else if( word == "#class" ) {
+                config::Classes * e = new config::Classes();
+                lineReaderSS >> e->name;
+                config::classes.push_back(e);
+                curr = "class";
+            } else if( word == "#code" ) {
+                config::varsS * e = new config::varsS();
+                lineReaderSS >> e->name;
+                lineReaderSS >> e->language;
+                e->code = "\n\\begin{minted}[fontsize=\\footnotesize]{" + e->language + "}\n" + line.substr(line.find("\n") + 1) + "\n\\end{minted}\n";
+                config::vars.push_back( e );
+            } else if( word == "#function" ) {
+                config::Functions * e = new config::Functions();
+                lineReaderSS >> e->name;
+                config::functions.push_back(e);
+                curr = "function";
+            } else if( word == "#method" ) {
+                config::Methods * e = new config::Methods();
+                lineReaderSS >> e->name;
+                config::methods.push_back(e);
+                curr = "method";
+            } else if( word.at(0) == '@' ) {
+                vector< pair<string, string> > * currConfigMap;
+                if( curr == "method" ) {
+                    currConfigMap = &config::methods.at(config::methods.size()-1)->configMap;
+                } else if( curr == "function" ) {
+                    currConfigMap = &config::functions.at(config::functions.size()-1)->configMap;
+                } else if( curr == "class" ) {
+                    currConfigMap = &config::classes.at(config::classes.size()-1)->configMap;
+                } else if( curr == "frontpage" ) {
+                    currConfigMap = &config::frontPage->configMap;
                 } else {
-                    config::Header * e = new config::Header();
-                    e->typ = word;
-                    lineReaderSS >> e->name;
-                    config::headerMap.push_back( e );
-                    currHeader = e;
+                    cout << "WHATTTT" << endl;
+                    exit(1);
                 }
-            }
-
-            if( currHeader != NULL ) {
-                if( std::find( validConfigList.begin(), validConfigList.end(), word ) != validConfigList.end() ) {
-                    string temp = word;
-                    string value = getSubstance( lineReaderSS );
-                    if( temp == "@language" ) {
-                        currHeader->language = value;
-                    }else {
-                        currHeader->configMap.push_back(std::pair<string,string>( temp, value ));
-                    }
-                }
+                string temp = word;
+                string value = getSubstance( lineReaderSS );
+                currConfigMap->push_back(std::pair<string,string>( temp, value ));
             }
         }
     }

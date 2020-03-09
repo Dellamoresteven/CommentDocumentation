@@ -1,3 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{titleAnimation} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{300}\PYG{p}{,} \PYG{l+m+mi}{500}\PYG{p}{,} \PYG{l+m+mi}{400}\PYG{p}{,} \PYG{l+m+mi}{700}\PYG{p}{];}
-\end{Verbatim}
