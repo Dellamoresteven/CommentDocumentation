@@ -1,0 +1,72 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Classes	config.cpp	/^    struct Classes {$/;"	s	namespace:config	file:
+FrontPage	config.cpp	/^    struct FrontPage {$/;"	s	namespace:config	file:
+Functions	config.cpp	/^    struct Functions {$/;"	s	namespace:config	file:
+MY_CONFIG	config.cpp	/^#define MY_CONFIG$/;"	d	file:
+Methods	config.cpp	/^    struct Methods {$/;"	s	namespace:config	file:
+WriteHeader	createTex.cpp	/^    void WriteHeader() {$/;"	f	class:texWriter
+classes	config.cpp	/^    static vector<Classes*> classes;$/;"	m	namespace:config	file:
+classpage	createTex.cpp	/^    void classpage() {$/;"	f	class:texWriter
+code	config.cpp	/^        string code;$/;"	m	struct:config::varsS	file:
+config	config.cpp	/^namespace config {$/;"	n	file:
+configMap	config.cpp	/^        vector< pair<string, string> > configMap;$/;"	m	struct:config::Classes	file:
+configMap	config.cpp	/^        vector< pair<string, string> > configMap;$/;"	m	struct:config::FrontPage	file:
+configMap	config.cpp	/^        vector< pair<string, string> > configMap;$/;"	m	struct:config::Functions	file:
+configMap	config.cpp	/^        vector< pair<string, string> > configMap;$/;"	m	struct:config::Methods	file:
+curr	token.cpp	/^    string curr;$/;"	m	class:token	file:
+cyan	main.cpp	/^#define cyan /;"	d	file:
+deleteOptional	createTex.cpp	/^    void deleteOptional( string& contents, T classToParse ) {$/;"	f	class:texWriter
+depth	config.cpp	/^        int depth = 0;$/;"	m	struct:config::Classes	file:
+depth	config.cpp	/^        int depth = 0;$/;"	m	struct:config::FrontPage	file:
+depth	config.cpp	/^        int depth = 0;$/;"	m	struct:config::Functions	file:
+depth	config.cpp	/^        int depth = 0;$/;"	m	struct:config::Methods	file:
+endDoc	createTex.cpp	/^    void endDoc() {$/;"	f	class:texWriter
+frontPage	config.cpp	/^    static FrontPage * frontPage = new FrontPage();$/;"	m	namespace:config	file:
+frontpage	createTex.cpp	/^    void frontpage() {$/;"	f	class:texWriter
+fullTex	createTex.cpp	/^    string fullTex = "";$/;"	m	class:texWriter	file:
+functions	config.cpp	/^    static vector<Functions*> functions;$/;"	m	namespace:config	file:
+getNextComment	token.cpp	/^string getNextComment( T &stream ) {$/;"	f	class:token
+getVar	token.cpp	/^string getVar( T &stream ) {$/;"	f	class:token
+green	config.cpp	/^#define green /;"	d	file:
+green	main.cpp	/^#define green /;"	d	file:
+inlinecode	config.cpp	/^        string inlinecode;$/;"	m	struct:config::varsS	file:
+inner	config.cpp	/^        vector<Functions*> inner;$/;"	m	struct:config::Classes	file:
+inner	config.cpp	/^        vector<Methods*> inner; \/\/ unused$/;"	m	struct:config::Methods	file:
+inner	config.cpp	/^        vector<Methods*> inner;$/;"	m	struct:config::Functions	file:
+language	config.cpp	/^        string language = "javascript";$/;"	m	struct:config::Classes	file:
+language	config.cpp	/^        string language = "javascript";$/;"	m	struct:config::Functions	file:
+language	config.cpp	/^        string language = "javascript";$/;"	m	struct:config::Methods	file:
+language	config.cpp	/^        string language = "javascript";$/;"	m	struct:config::varsS	file:
+link	token.cpp	/^    auto link(  ) {$/;"	f	class:token
+magenta	main.cpp	/^#define magenta /;"	d	file:
+main	main.cpp	/^int main(int argc, char* argv[])  {$/;"	f
+methods	config.cpp	/^    static vector<Methods*> methods;$/;"	m	namespace:config	file:
+name	config.cpp	/^        string name = "NULL"; \/\/ name$/;"	m	struct:config::Classes	file:
+name	config.cpp	/^        string name = "NULL"; \/\/ name$/;"	m	struct:config::FrontPage	file:
+name	config.cpp	/^        string name = "NULL"; \/\/ name$/;"	m	struct:config::Functions	file:
+name	config.cpp	/^        string name = "NULL"; \/\/ name$/;"	m	struct:config::Methods	file:
+name	config.cpp	/^        string name = "NULL";$/;"	m	struct:config::varsS	file:
+normal	config.cpp	/^#define normal /;"	d	file:
+normal	main.cpp	/^#define normal /;"	d	file:
+parseLineWithComment	token.cpp	/^auto parseLineWithComment( T line, U &file ) {$/;"	f	class:token
+printParams	createTex.cpp	/^    void printParams(T classToParse) {$/;"	f	class:texWriter
+printReturn	createTex.cpp	/^    void printReturn(T classToParse) {$/;"	f	class:texWriter
+red	config.cpp	/^#define red /;"	d	file:
+red	main.cpp	/^#define red /;"	d	file:
+replace	createTex.cpp	/^    void replace( string& contents, string replace, string replaceWith ) {$/;"	f	class:texWriter
+replaceInlines	createTex.cpp	/^    void replaceInlines( string& contents, int pos, string language ) {$/;"	f	class:texWriter
+replaceLinks	createTex.cpp	/^    void replaceLinks( string& contents, int pos ) {$/;"	f	class:texWriter
+replacer	createTex.cpp	/^    void replacer(T classToParse, int depth, vector<string> howToParseAll) {$/;"	f	class:texWriter
+startDoc	createTex.cpp	/^    void startDoc() {$/;"	f	class:texWriter
+texWriter	createTex.cpp	/^    texWriter() {}$/;"	f	class:texWriter
+texWriter	createTex.cpp	/^class texWriter {$/;"	c	file:
+token	token.cpp	/^    token() {}$/;"	f	class:token
+token	token.cpp	/^class token {$/;"	c	file:
+vars	config.cpp	/^    static vector<varsS*> vars;$/;"	m	namespace:config	file:
+varsS	config.cpp	/^    struct varsS {$/;"	s	namespace:config	file:
+yellow	main.cpp	/^#define yellow /;"	d	file:
